@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToDiary } from "../../redux/diary/operations.js";
 import styles from "./DiaryAddProductForm.module.css";
+import {selectSelectedDate} from "../../redux/diary/selectors.js"
 
 const DiaryAddProductForm = () => {
   const dispatch = useDispatch();
-  const selectedDate = useSelector((state) => state.diary.selectedDate);
+  const selectedDate = useSelector(selectSelectedDate);
+
 
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
