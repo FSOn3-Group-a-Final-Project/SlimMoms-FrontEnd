@@ -1,0 +1,57 @@
+.Sidebar {
+    background-color: #f0f1f3;
+    padding: 30px 20px;
+    border-radius: 8px;
+    min-width: 260px;
+    max-width: 300px;
+}
+.Date{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 4%;
+    color: #212121;
+    margin-bottom: 20px;
+}
+
+.List {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+.Label {
+    font-size: 14px;
+    color: #9b9faa;
+}
+.Value {
+    float: right;
+    font-size: 14px;
+    color: #212121;
+    font-weight: 500;
+}
+.NotRecommended {
+    margin-top: 20px;
+}
+.NotRecommendedLabel{
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-weight: 700;
+font-size: 14px;
+line-height: 100%;
+letter-spacing: 4%;
+color: #212121;
+}
+.ProductList {
+    margin-top: 10px;
+    padding-left: 0;
+}
+.ProductItem {
+  font-size: 14px;
+    color: #9b9faa;
+    list-style-type: none;
+}
+.Placeholder {
+    color: #9b9faa;
+    font-style: italic;
+    font-size: 14px;
+}
