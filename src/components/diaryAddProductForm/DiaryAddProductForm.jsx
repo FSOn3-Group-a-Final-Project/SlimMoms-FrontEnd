@@ -15,31 +15,56 @@ const DiaryAddProductForm = () => {
   const [weight, setWeight] = useState(100);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  useEffect(() => {
-    if (searchTerm.trim() === "") {
-      setProducts([]);
-      setSelectedProductId("");
-      setShowSuggestions(false);
-      return;
-    }
+//   useEffect(() => {
+//     if (searchTerm.trim() === "") {
+//       setProducts([]);
+//       setSelectedProductId("");
+//       setShowSuggestions(false);
+//       return;
+//     }
 
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch(`/products?search=${searchTerm}`);
-        if (!res.ok) {
-          console.error("Fetch hatası:", res.status);
-          return;
-        }
-        const data = await res.json();
-        setProducts(data);
-        setShowSuggestions(true);
-      } catch (error) {
-        console.error("Ürün arama hatası:", error);
-      }
-    };
+//     const fetchProducts = async () => {
+//       try {
+//         const res = await fetch(`/products?search=${searchTerm}`);
+//         if (!res.ok) {
+//           console.error("Fetch hatası:", res.status);
+//           return;
+//         }
+//         const data = await res.json();
+//         setProducts(data);
+//         setShowSuggestions(true);
+//       } catch (error) {
+//         console.error("Ürün arama hatası:", error);
+//       }
+//     };
 
-    fetchProducts();
-  }, [searchTerm]);
+//     fetchProducts();
+//   }, [searchTerm]);
+
+useEffect(() => {
+  if (searchTerm.trim() === "") {
+    setProducts([]);
+    setSelectedProductId("");
+    setShowSuggestions(false);
+    return;
+  }
+
+  // GEÇİCİ MOCK VERİ
+  const mockProducts = [
+    { _id: "1", title: "Elma" },
+    { _id: "2", title: "Peynir" },
+    { _id: "3", title: "Yoğurt" },
+    { _id: "4", title: "Karpuz" },
+    { _id: "5", title: "Süt" },
+  ];
+
+  const filtered = mockProducts.filter((p) =>
+    p.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  setProducts(filtered);
+  setShowSuggestions(true);
+}, [searchTerm]);
 
   const handleSelect = (product) => {
     setSearchTerm(product.title);
