@@ -1,9 +1,9 @@
-
+import { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // import PrivateRoute from '../../routes/PrivateRoute';
 // import { RestrictedRoute } from '../../routes/RestrictedRoute';
 import MainPage from "../../pages/mainPage/MainPage";
-// import LoginPage from '../../pages/loginPage/LoginPage';
+import LoginPage from "../../pages/loginPage/LoginPage";
 // import RegisterPage from '../../pages/registerPage/RegisterPage';
 // import DiaryPage from '../../pages/diaryPage/DiaryPage';
 import CalculatorPage from "../../pages/calculatorPage/CalculatorPage";
@@ -12,21 +12,23 @@ import css from "./App.module.css";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Suspense fallback={<div>Loading...</div>}>
       <div className={css.appContainer}>
         {/* <Header /> */}
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/calculator" element={<CalculatorPage />} />
-          {/* 
+          <Route path="/login" element={<LoginPage />} />
+          {/*
           <Route
             path="/login"
             element={
-              <RestrictedRoute redirectTo="/diary">
+             <RestrictedRoute redirectTo="/diary">
                 <LoginPage />
-              </RestrictedRoute>
+            </RestrictedRoute>
             }
           />
+          
           <Route
             path="/register"
             element={
@@ -54,7 +56,7 @@ function App() {
           */}
         </Routes>
       </div>
-    </BrowserRouter>
+    </Suspense>
   );
 }
 
