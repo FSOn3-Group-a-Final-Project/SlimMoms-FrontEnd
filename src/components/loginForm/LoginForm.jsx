@@ -31,46 +31,53 @@ const LoginForm = () => {
 
   return (
     <>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form className={css.form}>
-            <div className={css.field}>
-              <label htmlFor="email">Email</label>
-              <Field type="email" name="email" className={css.input} />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className={css.error}
-              />
-            </div>
-            <div className={css.field}>
-              <label htmlFor="password">Password</label>
-              <Field type="password" name="password" className={css.input} />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className={css.error}
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={css.button}
-            >
-              {isSubmitting ? "Loading..." : "Log In"}
-            </button>
-            <button>
-              type="submit"
-              disabled={isSubmitting}
-              className={css.buttonTwo}
-            </button>
-          </Form>
-        )}
-      </Formik>
+      <div className={css.container}>
+        <h1 className={css.title}>Log In</h1>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <Form className={css.form}>
+              <div className={css.field}>
+                <label htmlFor="email">Email *</label>
+                <Field type="email" name="email" className={css.input} />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className={css.error}
+                />
+              </div>
+              <div className={css.field}>
+                <label htmlFor="password">Password *</label>
+                <Field type="password" name="password" className={css.input} />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className={css.error}
+                />
+              </div>
+              <div className={css.buttons}>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={css.buttonLgn}
+                >
+                  {isSubmitting ? "Loading..." : "Log In"}
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={css.buttonRgs}
+                >
+                  Register
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </>
   );
 };
