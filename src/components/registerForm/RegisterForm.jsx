@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import { registerUser } from '../../redux/auth/operations';
 //import css from './RegisterForm.module.css';
 
 const RegisterForm = () => {
@@ -15,20 +16,14 @@ const RegisterForm = () => {
         password: '',
     };
 
-    const handleSubmit = (values, { resetForm, setSubmitting }) => {
+    const handleSubmit = async (values, { resetForm, setSubmitting }) => {
         try {
-            const { name, email, password } = values;
+            await dispatch(registerUser(values)).unwrap();
             toast.success('Registration is successful!');
-
             resetForm();
             navigate('/home');
         } catch (error) {
-            if (error.code === 11000) {
-                toast.error('User with this email already exists.');
-            } else {
-                toast.error('Registration failed, please try again.');
-            }
-            resetForm();
+            toast.error(error);
         } finally {
             setSubmitting(false);
         }
