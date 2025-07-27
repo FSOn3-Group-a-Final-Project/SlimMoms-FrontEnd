@@ -3,6 +3,7 @@ import TestModalPage from '../../pages/TestModalPage/TestModalPage';
 import TestRightSidebar from '../../pages/TestRightSidebar/TestRightSidebar';
 import DiaryAddProductForm from '../diaryAddProductForm/DiaryAddProductForm';
 import DiaryDateCalendar from '../diaryDateCalendar/DiaryDateСalendar';
+import DiaryProductsList from '../diaryProductsList/DiaryProductsList';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <TestRightSidebar/>
       <DiaryDateCalendar/>
       <DiaryAddProductForm/>
+      <DiaryProductsList/>
     </div>
   );
 }

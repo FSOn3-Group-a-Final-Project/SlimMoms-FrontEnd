@@ -2,69 +2,60 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToDiary } from "../../redux/diary/operations.js";
 import styles from "./DiaryAddProductForm.module.css";
-import {selectSelectedDate} from "../../redux/diary/selectors.js"
+import { selectSelectedDate } from "../../redux/diary/selectors.js";
 
 const DiaryAddProductForm = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectSelectedDate);
-
 
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState("");
   const [weight, setWeight] = useState(100);
   const [showSuggestions, setShowSuggestions] = useState(false);
+ 
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setProducts([]);
+      setSelectedProductId("");
+      setShowSuggestions(false);
+      return;
+    }
 
-//   useEffect(() => {
-//     if (searchTerm.trim() === "") {
-//       setProducts([]);
-//       setSelectedProductId("");
-//       setShowSuggestions(false);
-//       return;
-//     }
+        const fetchProducts = async () => {
+          try {
+            const res = await fetch(`/products?search=${searchTerm}`);
+            if (!res.ok) {
+              console.error("Fetch hatası:", res.status);
+              return;
+            }
+            const data = await res.json();
+            setProducts(data);
+            setShowSuggestions(true);
+          } catch (error) {
+            console.error("Ürün arama hatası:", error);
+          }
+        };
 
-//     const fetchProducts = async () => {
-//       try {
-//         const res = await fetch(`/products?search=${searchTerm}`);
-//         if (!res.ok) {
-//           console.error("Fetch hatası:", res.status);
-//           return;
-//         }
-//         const data = await res.json();
-//         setProducts(data);
-//         setShowSuggestions(true);
-//       } catch (error) {
-//         console.error("Ürün arama hatası:", error);
-//       }
-//     };
+        fetchProducts();
+      }, [searchTerm]);
 
-//     fetchProducts();
-//   }, [searchTerm]);
+    // GEÇİCİ MOCK VERİ
+  //   const mockProducts = [
+  //     { _id: "1", title: "Elma" },
+  //     { _id: "2", title: "Peynir" },
+  //     { _id: "3", title: "Yoğurt" },
+  //     { _id: "4", title: "Karpuz" },
+  //     { _id: "5", title: "Süt" },
+  //   ];
 
-useEffect(() => {
-  if (searchTerm.trim() === "") {
-    setProducts([]);
-    setSelectedProductId("");
-    setShowSuggestions(false);
-    return;
-  }
+  //   const filtered = mockProducts.filter((p) =>
+  //     p.title.toLowerCase().includes(searchTerm.toLowerCase())
+  //   );
 
-  // GEÇİCİ MOCK VERİ
-  const mockProducts = [
-    { _id: "1", title: "Elma" },
-    { _id: "2", title: "Peynir" },
-    { _id: "3", title: "Yoğurt" },
-    { _id: "4", title: "Karpuz" },
-    { _id: "5", title: "Süt" },
-  ];
-
-  const filtered = mockProducts.filter((p) =>
-    p.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  setProducts(filtered);
-  setShowSuggestions(true);
-}, [searchTerm]);
+  //   setProducts(filtered);
+  //   setShowSuggestions(true);
+  // }, [searchTerm]);
 
   const handleSelect = (product) => {
     setSearchTerm(product.title);

@@ -17,3 +17,17 @@ export const addProductToDiary = createAsyncThunk(
     }
   }
 );
+
+
+
+export const deleteProductFromDiary = createAsyncThunk(
+  "diary/deleteProduct",
+  async ({ date, productId }, thunkAPI) => {
+    try {
+      await axios.delete(`/products/diary/${date}/${productId}`);
+      return { date, productId };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
