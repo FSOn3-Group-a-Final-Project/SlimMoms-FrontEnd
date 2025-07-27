@@ -1,4 +1,4 @@
-import { logIn } from "../../redux/auth/operations";
+import { loginUser } from "../../redux/auth/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
@@ -21,7 +21,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      await dispatch(logIn(values));
+      await dispatch(loginUser(values));
     } catch (error) {
       console.error("Login error:", error);
     } finally {
