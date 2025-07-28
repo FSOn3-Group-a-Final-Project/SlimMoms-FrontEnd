@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import css from "./LoginForm.module.css";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
@@ -35,11 +36,12 @@ const LoginForm = () => {
     }
   };
 
-   if (isLoggedIn) {
-    navigate("/diary");
-    return null;
-  }
-
+   useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/diary");
+    }
+  }, [isLoggedIn, navigate]);
+  
   return (
     <>
       <div className={css.container}>
