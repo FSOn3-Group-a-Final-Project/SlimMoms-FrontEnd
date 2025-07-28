@@ -40,23 +40,6 @@ const DiaryAddProductForm = () => {
         fetchProducts();
       }, [searchTerm]);
 
-    // GEÇİCİ MOCK VERİ
-  //   const mockProducts = [
-  //     { _id: "1", title: "Elma" },
-  //     { _id: "2", title: "Peynir" },
-  //     { _id: "3", title: "Yoğurt" },
-  //     { _id: "4", title: "Karpuz" },
-  //     { _id: "5", title: "Süt" },
-  //   ];
-
-  //   const filtered = mockProducts.filter((p) =>
-  //     p.title.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
-
-  //   setProducts(filtered);
-  //   setShowSuggestions(true);
-  // }, [searchTerm]);
-
   const handleSelect = (product) => {
     setSearchTerm(product.title);
     setSelectedProductId(product._id);

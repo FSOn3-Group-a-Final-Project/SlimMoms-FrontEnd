@@ -5,6 +5,7 @@ const DiaryPage = () => {
     <div>
       <h2>Günlük</h2>
       <DiaryAddProductForm />
+    
     </div>
   );
 };
