@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { registerUser } from '../../redux/auth/operations';
-//import css from './RegisterForm.module.css';
+import css from './RegisterForm.module.css';
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const RegisterForm = () => {
             await dispatch(registerUser(values)).unwrap();
             toast.success('Registration is successful!');
             resetForm();
-            navigate('/home');
+            navigate('/');
         } catch (error) {
             toast.error(error);
         } finally {
@@ -36,7 +36,7 @@ const RegisterForm = () => {
     });
 
     return (
-        <div>
+        <div className={css.regContainer}>
             <Toaster position="top-center" reverseOrder={false} />
             <Formik
                 initialValues={initialValues}
@@ -44,51 +44,56 @@ const RegisterForm = () => {
                 onSubmit={handleSubmit}
             >
                 {({ isSubmitting }) => (
-                    <Form>
-                        <h1>REGISTER</h1>
-                        <div>
+                    <Form className={css.registerForm}>
+                        <h1 className={css.registerTitle}>REGISTER</h1>
+                        <div className={css.registerInput}>
                             <Field
                                 type="text"
                                 name="name"
                                 id="name"
                                 placeholder="Name *"
+                                className={css.customRegister}
                             />
                             <ErrorMessage
                                 name="name"
                             />
                         </div>
 
-                        <div>
+                        <div className={css.registerInput}>
                             <Field
                                 type="email"
                                 name="email"
                                 id="email"
                                 placeholder="Email *"
+                                className={css.customRegister}
                             />
                             <ErrorMessage
                                 name="email"
                             />
                         </div>
 
-                        <div>
+                        <div className={css.registerInput}>
                             <Field
                                 type="password"
                                 name="password"
                                 id="password"
                                 placeholder="Password *"
+                                className={css.customRegister}
                             />
                             <ErrorMessage
                                 name="password"
                             />
                         </div>
 
+                        <div className={css.regButtons} >
                         <div>
-                            <button type="submit" disabled={isSubmitting}>Register</button>
+                            <button className={css.registerButton} type="submit" disabled={isSubmitting}>Register</button>
                         </div>
-
                         <div>
-                            <button type="button" onClick={() => navigate('/login')}>Log in</button>
+                            <button className={css.loginButton} type="button" onClick={() => navigate('/login')}>Log in</button>
                         </div>
+                        </div>
+                        
                     </Form>
                 )}
             </Formik>

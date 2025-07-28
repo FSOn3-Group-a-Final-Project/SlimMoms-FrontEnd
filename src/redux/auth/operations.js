@@ -21,15 +21,10 @@ export const registerUser = createAsyncThunk(
         email,
         password,
       });
-      const token = response.data.data?.accessToken;
-      console.log("Token:", token);
 
-      if (!token) {
-        return thunkAPI.rejectWithValue("Token not found.");
-      }
+      toast.success("Registration successful!");
+      return response.data;
 
-      setAuthHeader(token);
-      return response.data.data;
     } catch (err) {
       if (err.response?.status === 409) {
         return thunkAPI.rejectWithValue("User with this email already exists.");
