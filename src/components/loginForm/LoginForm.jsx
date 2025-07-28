@@ -1,11 +1,13 @@
 import { loginUser } from "../../redux/auth/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import css from "./LoginForm.module.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialValues = {
     email: "",
@@ -67,9 +69,9 @@ const LoginForm = () => {
                   {isSubmitting ? "Loading..." : "Log In"}
                 </button>
                 <button
-                  type="submit"
-                  disabled={isSubmitting}
+                  type="button"
                   className={css.buttonRgs}
+                  onClick={() => navigate("/register")}
                 >
                   Register
                 </button>
