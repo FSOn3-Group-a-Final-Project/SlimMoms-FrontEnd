@@ -1,14 +1,14 @@
+
 import { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
-
 // import PrivateRoute from '../../routes/PrivateRoute';
 // import { RestrictedRoute } from '../../routes/RestrictedRoute';
 import MainPage from "../../pages/mainPage/MainPage";
 // import DiaryPage from '../../pages/diaryPage/DiaryPage';
-import CalculatorPage from "../../pages/calculatorPage/CalculatorPage";
+import CalculatorPage from '../../pages/calculatorPage/CalculatorPage';
 // import Header from '../header/Header';
-import css from "./App.module.css";
+import css from './App.module.css';
 
 
 const LoginPage = lazy(() => import("../../pages/loginPage/LoginPage"));
@@ -16,12 +16,14 @@ const RegisterPage = lazy(() => import('../../pages/registerPage/RegisterPage'))
 
 function App() {
   return (
+
     <Suspense fallback={<div>Loading...</div>}>
       <div className={css.appContainer}>
         {/* <Header /> */}
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/calculator" element={<CalculatorPage />} />
+
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           {/*
@@ -59,9 +61,12 @@ function App() {
             }
           /> 
           */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
+
     </Suspense>
+
   );
 }
 

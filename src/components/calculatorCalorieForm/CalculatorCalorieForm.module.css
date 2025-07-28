@@ -5,6 +5,8 @@
   margin-left: 20px;
   width: 400px;
   margin: 0 auto;
+  font-family: "Verdana", sans-serif;
+  
 }
 
 .formColumns {
@@ -130,6 +132,7 @@
     max-width: 600px; 
     position: absolute;
     margin-left: 20px;
+    font-family: "Verdana", sans-serif;
   }
 
   .formColumns {
