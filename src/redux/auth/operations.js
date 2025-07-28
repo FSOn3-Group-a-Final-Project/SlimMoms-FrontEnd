@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 
-//axios.defaults.baseURL = '';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
