@@ -3,11 +3,14 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import css from "./LoginForm.module.css";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const initialValues = {
     email: "",
@@ -24,12 +27,18 @@ const LoginForm = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       await dispatch(loginUser(values));
+      navigate("/diary");
     } catch (error) {
       console.error("Login error:", error);
     } finally {
       setSubmitting(false);
     }
   };
+
+   if (isLoggedIn) {
+    navigate("/diary");
+    return null;
+  }
 
   return (
     <>

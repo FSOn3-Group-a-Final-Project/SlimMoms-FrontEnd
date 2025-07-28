@@ -9,6 +9,7 @@ import DiaryPage from "../../pages/diaryPage/DiaryPage";
 import CalculatorPage from "../../pages/calculatorPage/CalculatorPage";
 // import Header from '../header/Header';
 import css from "./App.module.css";
+import PrivateRoute from "../../routes/PrivateRoute";
 
 const LoginPage = lazy(() => import("../../pages/loginPage/LoginPage"));
 const RegisterPage = lazy(() =>
