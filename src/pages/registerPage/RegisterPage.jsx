@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import css from './RegisterPage.module.css';
 
 const RegisterPage = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -10,15 +11,14 @@ const RegisterPage = () => {
 
     useEffect(() => {
         if (isLoggedIn) {
-            navigate('/home');
+            navigate('/');
         }
     }, [isLoggedIn, navigate]);
 
     return (
-        <>
-            <h1>Registration</h1>
+        <div className={css.registerPage}>
             <RegistrationForm />
-        </>
+        </div>
     );
 };
 
