@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser, logoutUser } from "./operations";
+import { fetchDiaryProductsByDate } from "../diary/operations";
 
 const initialState = {
   user: { name: null, email: null },
@@ -22,7 +23,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
     },
   },
-   extraReducers: (builder) => {
+  extraReducers: (builder) => {
     builder
       .addCase(loginUser.fulfilled, (state, action) => {
         state.token = action.payload.accessToken; // API'den gelen token
@@ -33,6 +34,9 @@ const authSlice = createSlice({
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+      })
+      .addCase(fetchDiaryProductsByDate.fulfilled, (state, action) => {
+        state.productsByDate = action.payload; // veya senin kullandığın state alanı
       });
   },
 });

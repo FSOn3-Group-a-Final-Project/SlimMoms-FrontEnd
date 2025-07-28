@@ -5,7 +5,7 @@ import styles from "./DiaryProductsList.module.css";
 
 const DiaryProductsList = () => {
   const products = useSelector(selectDiaryProductsByDate);
-
+console.log("DiaryProductsList products:", products);
   if (!products || products.length === 0) {
     return <p className={styles.empty}>Product not added yet</p>;
   }
