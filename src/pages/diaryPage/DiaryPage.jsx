@@ -1,11 +1,11 @@
-import DiaryAddProductForm from '../../components/diaryAddProductForm/DiaryAddProductForm';
+import DiaryAddProductForm from "../../components/diaryAddProductForm/DiaryAddProductForm";
+import DiaryDateCalendar from "../../components/diaryDateCalendar/DiaryDateСalendar";
 
 const DiaryPage = () => {
   return (
     <div>
-      <h2>Günlük</h2>
+      <DiaryDateCalendar />
       <DiaryAddProductForm />
-    
     </div>
   );
 };

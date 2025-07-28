@@ -13,7 +13,7 @@ const DiaryAddProductForm = () => {
   const [selectedProductId, setSelectedProductId] = useState("");
   const [weight, setWeight] = useState(100);
   const [showSuggestions, setShowSuggestions] = useState(false);
- 
+
   useEffect(() => {
     if (searchTerm.trim() === "") {
       setProducts([]);
@@ -22,23 +22,24 @@ const DiaryAddProductForm = () => {
       return;
     }
 
-        const fetchProducts = async () => {
-          try {
-            const res = await fetch(`/products?search=${searchTerm}`);
-            if (!res.ok) {
-              console.error("Fetch hatası:", res.status);
-              return;
-            }
-            const data = await res.json();
-            setProducts(data);
-            setShowSuggestions(true);
-          } catch (error) {
-            console.error("Ürün arama hatası:", error);
-          }
-        };
+    const fetchProducts = async () => {
+      try {
+        const API_URL = import.meta.env.VITE_API_URL;
+        const res = await fetch(`${API_URL}/products?search=${searchTerm}`);
+        if (!res.ok) {
+          console.error("Fetch hatası:", res.status);
+          return;
+        }
+        const data = await res.json();
+        setProducts(data);
+        setShowSuggestions(true);
+      } catch (error) {
+        console.error("Ürün arama hatası:", error);
+      }
+    };
 
-        fetchProducts();
-      }, [searchTerm]);
+    fetchProducts();
+  }, [searchTerm]);
 
   const handleSelect = (product) => {
     setSearchTerm(product.title);
