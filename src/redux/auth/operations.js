@@ -8,6 +8,12 @@ export const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
+export const getAuthConfig = (token) => ({
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = "";
 };

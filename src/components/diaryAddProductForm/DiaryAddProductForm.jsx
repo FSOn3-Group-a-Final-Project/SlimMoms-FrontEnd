@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProductToDiary } from "../../redux/diary/operations.js";
 import styles from "./DiaryAddProductForm.module.css";
 import { selectSelectedDate } from "../../redux/diary/selectors.js";
+import { fetchDiaryProductsByDate } from "../../redux/diary/operations.js";
+
 
 const DiaryAddProductForm = () => {
   const dispatch = useDispatch();
@@ -47,27 +49,29 @@ const DiaryAddProductForm = () => {
     setShowSuggestions(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!selectedProductId) {
-      alert("Lütfen ürün seçin!");
-      return;
-    }
-    dispatch(
-      addProductToDiary({
-        productId: selectedProductId,
-        weight,
-        date: selectedDate,
-      })
-    );
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!selectedProductId) {
+    alert("Lütfen ürün seçin!");
+    return;
+  }
+  await dispatch(
+    addProductToDiary({
+      productId: selectedProductId,
+      weight,
+      date: selectedDate,
+    })
+  );
 
-    // Temizle
-    setSearchTerm("");
-    setProducts([]);
-    setSelectedProductId("");
-    setWeight(100);
-    setShowSuggestions(false);
-  };
+  dispatch(fetchDiaryProductsByDate(selectedDate));
+
+  // Temizle
+  setSearchTerm("");
+  setProducts([]);
+  setSelectedProductId("");
+  setWeight(100);
+  setShowSuggestions(false);
+};
 
   return (
     <form onSubmit={handleSubmit}>
