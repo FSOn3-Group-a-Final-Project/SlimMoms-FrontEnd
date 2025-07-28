@@ -124,6 +124,18 @@
         margin-bottom: 30px;
     }
 
+    .registerForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        box-sizing: border-box;
+    }
+
     .regButtons {
         display: flex;
         flex-direction: column;
