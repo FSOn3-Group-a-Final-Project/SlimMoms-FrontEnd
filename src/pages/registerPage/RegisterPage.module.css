@@ -2,14 +2,15 @@
     .registerPage {
         width: 100%;
         height: 100vh;
-        background: url(/images/authtabletbackground.png);
+        background: url(/images/authtabletbackground.png) no-repeat center center;
+        background-size: cover;
     }
 }
 
 @media screen and (min-width: 1280px) {
     .registerPage {
-        width: 1280px;
+        width: 100%;
         height: 100vh;
-        background: url(../../../public/images/authDesktopBackground.png);
+        background: url(/images/authDesktopBackground.png);
     }
 }

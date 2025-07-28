@@ -89,11 +89,10 @@ const RegisterForm = () => {
                         <div>
                             <button className={css.registerButton} type="submit" disabled={isSubmitting}>Register</button>
                         </div>
-                        <div>
+                        <div className={css.loginButtonContainer}>
                             <button className={css.loginButton} type="button" onClick={() => navigate('/login')}>Log in</button>
                         </div>
                         </div>
-                        
                     </Form>
                 )}
             </Formik>

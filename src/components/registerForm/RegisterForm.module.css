@@ -5,7 +5,9 @@
     justify-content: center;
     width: 100%;
     margin: 0 auto;
+    padding-left: 32px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 35px;
 }
 
 .registerTitle {
@@ -16,7 +18,7 @@
     line-height: 100%;
     letter-spacing: 4%;
     text-transform: uppercase;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     margin-top: 40px;
 }
 
@@ -34,10 +36,11 @@
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 4%;
-    color: #FC842D;
+    color: red;
     border: none;
     outline: none;
     flex-direction: column;
+    margin-top: 40px;
 }
 
 .customRegister {
@@ -46,9 +49,9 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 700;
     font-size: 14px;
+    color: black;
     line-height: 100%;
     letter-spacing: 4%;
-    color: #9B9FAA;
     border-bottom: 1px solid #E0E0E0;
     border-top: none;
     border-left: none;
@@ -74,6 +77,7 @@
     border-radius: 30px;
     cursor: pointer;
     left: 16px;
+    margin-top: 50px;
 }
 
 .loginButton {
@@ -89,27 +93,49 @@
     border-radius: 30px;
     cursor: pointer;
     left: 16px;
+    margin-top: 50px;
 }
 
+.regButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
 
+/*mobile:*/
 
+@media screen and (max-width: 768px) {
+    .regContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        box-sizing: border-box;
+    }
 
+    .registerTitle {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
 
+    .regButtons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        max-width: 500px;
+        box-sizing: border-box;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    .loginButtonContainer {
+        display: flex;
+        margin-top: -50px;
+    }
+}
