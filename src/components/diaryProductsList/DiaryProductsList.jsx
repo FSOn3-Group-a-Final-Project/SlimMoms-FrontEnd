@@ -21,11 +21,9 @@ const DiaryProductsList = () => {
   }
 
   console.log("DiaryProductsList products:", products);
-
   if (!Array.isArray(products) || products.length === 0) {
-  return <p className={styles.empty}>Product not added yet</p>;
-}
-
+    return <p className={styles.empty}>Product not added yet</p>;
+  }
   return (
     <ul className={styles.list}>
       {products.map((product) => (
@@ -34,5 +32,4 @@ const DiaryProductsList = () => {
     </ul>
   );
 };
-
 export default DiaryProductsList;
