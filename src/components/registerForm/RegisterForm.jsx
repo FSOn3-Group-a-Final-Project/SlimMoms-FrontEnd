@@ -17,13 +17,14 @@ const RegisterForm = () => {
     };
 
     const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+        console.log("handleSubmit called with values:", values);
         try {
             await dispatch(registerUser(values)).unwrap();
-            toast.success('Registration is successful!');
             resetForm();
             navigate('/');
         } catch (error) {
-            toast.error(error);
+            console.error("handleSubmit error:", error);
+            toast.error(error?.message || "Registration failed");
         } finally {
             setSubmitting(false);
         }
