@@ -7,6 +7,7 @@ const diarySlice = createSlice({
   initialState: {
     selectedDate: new Date().toISOString().split("T")[0], // Bugünün tarihi yyyy-mm-dd
     products: {},
+    loading: false,
   },
   reducers: {
     setSelectedDate: (state, action) => {
@@ -15,17 +16,28 @@ const diarySlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchDiaryProductsByDate.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(fetchDiaryProductsByDate.fulfilled, (state, action) => {
-        // API'den gelen ürünler dizisini, seçili tarihe kaydet
         state.products[state.selectedDate] = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchDiaryProductsByDate.rejected, (state) => {
+        state.loading = false;
+      })
+      .addCase(deleteProductFromDiary.pending, (state) => {
+        state.loading = true;
       })
       .addCase(deleteProductFromDiary.fulfilled, (state, action) => {
-        const { date, productId } = action.payload;
-        if (state.products[date]) {
-          state.products[date] = state.products[date].filter(
-            (product) => (product._id || product.id) !== productId
-          );
+        const entry = action.payload;
+        state.loading = false;
+        if (entry && entry.date && Array.isArray(entry.products)) {
+          state.products[entry.date] = entry.products;
         }
+      })
+      .addCase(deleteProductFromDiary.rejected, (state) => {
+        state.loading = false;
       });
   },
 });

@@ -8,15 +8,17 @@ const DiaryProductsListItem = ({ product }) => {
   const selectedDate = useSelector(selectSelectedDate);
 
   const handleDelete = () => {
-    dispatch(deleteProductFromDiary({ date: selectedDate, productId: product._id }));
+    dispatch(
+      deleteProductFromDiary({ date: selectedDate, productId: product._id })
+    );
   };
 
   return (
     <li className={styles.item}>
       <div className={styles.info}>
-        <p >{product.title}</p>
-        <p >{product.weight}g</p>
-        <p c>{product.calories}g</p>
+        <p>{product.title}</p>
+        <p>{product.weight}g</p>
+        <p>{product.calories}g</p>
       </div>
       <button className={styles.deleteBtn} onClick={handleDelete}>
         ❌

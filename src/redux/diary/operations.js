@@ -25,20 +25,6 @@ export const addProductToDiary = createAsyncThunk(
   }
 );
 
-// export const addProductToDiary = createAsyncThunk('diary/addProduct', async ({ productId, weight, date }, thunkApi) => {
-//     try {
-//         const response  = await axios.post(
-//         `${API_URL}/products`,
-//         { productId, weight, date },
-       
-//       );
-//       thunkApi.dispatch(loginUser());
-//       return response.data;
-//     } catch (error) {
-//         return thunkApi.rejectWithValue(error.message);
-//     }
-// });
-
 
 export const deleteProductFromDiary = createAsyncThunk(
   'diary/deleteProduct',

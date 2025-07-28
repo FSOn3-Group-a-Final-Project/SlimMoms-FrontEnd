@@ -1,19 +1,24 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { selectDiaryProductsByDate, selectSelectedDate } from "../../redux/diary/selectors";
-import DiaryProductsListItem from "../DiaryProductsListItem/DiaryProductsListItem.jsx";
+import DiaryProductsListItem from "../diaryProductsListItem/DiaryProductsListItem";
 import styles from "./DiaryProductsList.module.css";
 import { fetchDiaryProductsByDate } from "../../redux/diary/operations";
+import { selectDiaryLoading } from "../../redux/diary/selectors";
 
 const DiaryProductsList = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectSelectedDate);
   const products = useSelector(selectDiaryProductsByDate);
+    const loading = useSelector(selectDiaryLoading);
 
-  useEffect(() => {
+ useEffect(() => {
     dispatch(fetchDiaryProductsByDate(selectedDate));
   }, [dispatch, selectedDate]);
 
+  if (loading) {
+    return <p className={styles.empty}>Loading...</p>;
+  }
 
   console.log("DiaryProductsList products:", products);
 
@@ -24,7 +29,7 @@ const DiaryProductsList = () => {
   return (
     <ul className={styles.list}>
       {products.map((product) => (
-        <DiaryProductsListItem key={product._id} product={product} />
+        <DiaryProductsListItem key={product._id || product.id} product={product.product} />
       ))}
     </ul>
   );
