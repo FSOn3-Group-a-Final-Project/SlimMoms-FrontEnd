@@ -1,6 +1,6 @@
 
 import { Suspense } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
 // import PrivateRoute from '../../routes/PrivateRoute';
 // import { RestrictedRoute } from '../../routes/RestrictedRoute';
@@ -16,7 +16,7 @@ const RegisterPage = lazy(() => import('../../pages/registerPage/RegisterPage'))
 
 function App() {
   return (
-    <BrowserRouter>
+    
       <Suspense fallback={<div>Loading...</div>}>
         <div className={css.appContainer}>
           {/* <Header /> */}
@@ -65,7 +65,7 @@ function App() {
           </Routes>
         </div>
       </Suspense>
-    </BrowserRouter>
+    
   );
 }
 
