@@ -23,8 +23,7 @@ export const registerUser = createAsyncThunk(
       });
 
       toast.success("Registration successful!");
-      return response.data;
-
+      return response.data.data; // <-- sadece data objesini dön
     } catch (err) {
       if (err.response?.status === 409) {
         return thunkAPI.rejectWithValue("User with this email already exists.");
