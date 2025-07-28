@@ -1,0 +1,59 @@
+.container {
+  padding: 40px 20px;
+  height: 100vh;
+  overflow-y: hidden;
+  box-sizing: border-box;
+}
+
+.textContainer {
+  max-width: 500px;
+}
+
+.title {
+  width: 300px;
+  font-size: 22px;
+  line-height: 140%;
+  color: #212121;
+  margin-bottom: 30px;
+  font-weight: 700;
+  margin-left: 35px;
+}
+
+/* Tablet ve üzeri */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .container {
+    padding: 80px 32px;
+    background-image: url("/public/images/backgroundimage3px.png");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+  }
+
+  .title {
+    width: 608px;
+    font-size: 34px;
+    max-width: 700px;
+    margin-left: 30px;
+  }
+}
+
+/* Desktop ve üzeri */
+@media screen and (min-width: 1280px) and (max-width: 1920px) {
+  .container {
+    padding: 100px 16px;
+    background-image: url("/public/images/backgroundimage3px.png");
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: contain;
+  }
+  .title {
+    width: 608px;
+    font-size: 38px;
+    max-width: 700px;
+    margin-left: 30px;
+  }
+}
+
+.formWrapper {
+  margin-left: 20px;
+}

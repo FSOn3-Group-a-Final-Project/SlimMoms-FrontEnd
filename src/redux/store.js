@@ -1,17 +1,33 @@
-// test store
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { authReducer } from "../redux/auth/slice.js";
 
-// Basit diary slice — sadece selectedDate tutuyor test amaçlı
-const diarySlice = createSlice({
-  name: 'diary',
-  initialState: { selectedDate: new Date().toISOString().slice(0, 10) },
-  reducers: {},
-});
+const authPersistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token"],
+};
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    diary: diarySlice.reducer,
+    auth: persistReducer(authPersistConfig, authReducer),
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
-export default store;
+export const persistor = persistStore(store);

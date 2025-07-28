@@ -1,21 +1,68 @@
-import css from './App.module.css';
-import TestModalPage from '../../pages/TestModalPage/TestModalPage';
-import TestRightSidebar from '../../pages/TestRightSidebar/TestRightSidebar';
-import DiaryAddProductForm from '../diaryAddProductForm/DiaryAddProductForm';
-import DiaryDateCalendar from '../diaryDateCalendar/DiaryDateСalendar';
-import DiaryProductsList from '../diaryProductsList/DiaryProductsList';
+import { Suspense } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { lazy } from "react";
+
+// import PrivateRoute from '../../routes/PrivateRoute';
+// import { RestrictedRoute } from '../../routes/RestrictedRoute';
+import MainPage from "../../pages/mainPage/MainPage";
+// import DiaryPage from '../../pages/diaryPage/DiaryPage';
+import CalculatorPage from "../../pages/calculatorPage/CalculatorPage";
+// import Header from '../header/Header';
+import css from "./App.module.css";
+
+
+const LoginPage = lazy(() => import("../../pages/loginPage/LoginPage"));
+const RegisterPage = lazy(() => import('../../pages/registerPage/RegisterPage'));
 
 function App() {
   return (
-    <div className={css.appContainer}>
-      <h1>Welcome to Slim Moms App</h1>
-      <p>Comming Soon...</p>
-      <TestModalPage/>
-      <TestRightSidebar/>
-      <DiaryDateCalendar/>
-      <DiaryAddProductForm/>
-      <DiaryProductsList/>
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className={css.appContainer}>
+        {/* <Header /> */}
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/calculator" element={<CalculatorPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          {/*
+          <Route
+            path="/login"
+            element={
+             <RestrictedRoute redirectTo="/diary">
+                <LoginPage />
+            </RestrictedRoute>
+            }
+          />
+          
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute redirectTo="/diary">
+                <RegisterPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/diary"
+            element={
+              <PrivateRoute>
+                <DiaryPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/calculator"
+            element={
+              <PrivateRoute>
+                <CalculatorPage />
+              </PrivateRoute>
+            }
+          /> 
+          */}
+        </Routes>
+      </div>
+    </Suspense>
   );
 }
+
 export default App;
