@@ -1,59 +1,61 @@
-// import { useState } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import styles from "./DailyCaloriesForm.module.css";
-import { calculateDailyCalories } from "../../utils/calculations";
-// import { Modal } from '../modal/Modal'; //
-// import DailyCalorieIntake from '../dailyCalorieIntake/DailyCalorieIntake'; //
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import styles from './DailyCaloriesForm.module.css';
+import { calculateDailyCalories } from '../../utils/calculations';
+import Modal from '../modal/Modal'; 
+import DailyCalorieIntake from '../dailyCalorieIntake/DailyCalorieIntake'; 
 
 const validationSchema = Yup.object({
   height: Yup.number()
-    .typeError("Height must be a number")
-    .positive("Height must be positive")
-    .required("Height is required"),
+    .typeError('Height must be a number')
+    .positive('Height must be positive')
+    .required('Height is required'),
   age: Yup.number()
-    .typeError("Age must be a number")
-    .positive("Age must be positive")
-    .integer("Age must be an integer")
-    .required("Age is required"),
+    .typeError('Age must be a number')
+    .positive('Age must be positive')
+    .integer('Age must be an integer')
+    .required('Age is required'),
   currentWeight: Yup.number()
-    .typeError("Current weight must be a number")
-    .positive("Current weight must be positive")
-    .required("Current weight is required"),
+    .typeError('Current weight must be a number')
+    .positive('Current weight must be positive')
+    .required('Current weight is required'),
   desiredWeight: Yup.number()
-    .typeError("Desired weight must be a number")
-    .positive("Desired weight must be positive")
-    .required("Desired weight is required"),
-  bloodType: Yup.string().required("Blood type is required"),
+    .typeError('Desired weight must be a number')
+    .positive('Desired weight must be positive')
+    .required('Desired weight is required'),
+  bloodType: Yup.string().required('Blood type is required'),
 });
 
 const DailyCaloriesForm = () => {
-  // const [isModalOpen, setIsModalOpen] = useState(false); //
-  // const [calorieData, setCalorieData] = useState({
-  //   calories: 0,
-  //   notAllowedFoods: ['Flour products', 'Milk', 'Red meat', 'Smoked meats'], // Örnek veri
-  // });
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [calorieData, setCalorieData] = useState({
+    calories: 0,
+    notAllowedFoods: ['Flour products', 'Milk', 'Red meat', 'Smoked meats'], // Örnek veri
+  });
 
-  // const openModal = () => setIsModalOpen(true); //
-  // const closeModal = () => setIsModalOpen(false); //
+  const openModal = () => {
+    setIsModalOpen(true);
+  }; 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const formik = useFormik({
     initialValues: {
-      height: "",
-      age: "",
-      currentWeight: "",
-      desiredWeight: "",
-      bloodType: "1",
+      height: '',
+      age: '',
+      currentWeight: '',
+      desiredWeight: '',
+      bloodType: '1',
     },
     validationSchema: validationSchema,
     onSubmit: (values, { resetForm }) => {
       try {
         const calories = calculateDailyCalories(values);
-        alert(
-          `Your recommended daily calorie intake is ${calories.toFixed(0)} kcal`
-        );
-        // setCalorieData(prevData => ({ ...prevData, calories })); //
-        // openModal(); //
+        // alert(`Your recommended daily calorie intake is ${calories.toFixed(0)} kcal`);
+        setCalorieData(prevData => ({ ...prevData, calories })); 
+        openModal(); 
         resetForm();
       } catch (error) {
         console.error("Error during form submission:", error);
@@ -105,9 +107,7 @@ const DailyCaloriesForm = () => {
                 value={formik.values.currentWeight}
               />
               {formik.touched.currentWeight && formik.errors.currentWeight ? (
-                <div className={styles.error}>
-                  {formik.errors.currentWeight}
-                </div>
+                <div className={styles.error}>{formik.errors.currentWeight}</div>
               ) : null}
             </div>
           </div>
@@ -123,19 +123,13 @@ const DailyCaloriesForm = () => {
                 value={formik.values.desiredWeight}
               />
               {formik.touched.desiredWeight && formik.errors.desiredWeight ? (
-                <div className={styles.error}>
-                  {formik.errors.desiredWeight}
-                </div>
+                <div className={styles.error}>{formik.errors.desiredWeight}</div>
               ) : null}
             </div>
             <div className={styles.inputGroup}>
               <label>Blood type *</label>
-              <div
-                className={styles.radioGroup}
-                role="group"
-                aria-labelledby="blood-type-group"
-              >
-                {[1, 2, 3, 4].map((type) => (
+              <div className={styles.radioGroup} role="group" aria-labelledby="blood-type-group">
+                {[1, 2, 3, 4].map(type => (
                   <label key={type} className={styles.radioLabel}>
                     <input
                       type="radio"
@@ -161,17 +155,16 @@ const DailyCaloriesForm = () => {
         </button>
       </form>
 
-      {/* 
+      
       {isModalOpen && (
-        <Modal onClose={closeModal}>
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
           <DailyCalorieIntake
             calories={calorieData.calories}
-            notAllowedFoods={calorieData.notAllowedFoods}
+            products={calorieData.notAllowedFoods}
             onClose={closeModal}
           />
         </Modal>
       )}
-      */}
     </>
   );
 };

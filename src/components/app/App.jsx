@@ -1,23 +1,24 @@
-
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 // import PrivateRoute from '../../routes/PrivateRoute';
 // import { RestrictedRoute } from '../../routes/RestrictedRoute';
-import MainPage from "../../pages/mainPage/MainPage";
+import MainPage from '../../pages/mainPage/MainPage';
 // import LoginPage from '../../pages/loginPage/LoginPage';
 // import RegisterPage from '../../pages/registerPage/RegisterPage';
 // import DiaryPage from '../../pages/diaryPage/DiaryPage';
-import CalculatorPage from "../../pages/calculatorPage/CalculatorPage";
+import CalculatorPage from '../../pages/calculatorPage/CalculatorPage';
 // import Header from '../header/Header';
-import css from "./App.module.css";
+import css from './App.module.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
       <div className={css.appContainer}>
         {/* <Header /> */}
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/calculator" element={<CalculatorPage />} />
+          
+         
           {/* 
           <Route
             path="/login"
@@ -52,9 +53,10 @@ function App() {
             }
           /> 
           */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 }
 
