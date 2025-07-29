@@ -33,7 +33,9 @@ const diarySlice = createSlice({
         const entry = action.payload;
         state.loading = false;
         if (entry && entry.date && Array.isArray(entry.products)) {
-          state.products[entry.date] = entry.products;
+          state.products[entry.date] = { products: entry.products };
+        } else if (entry && entry.date) {
+          state.products[entry.date] = { products: [] };
         }
       })
       .addCase(deleteProductFromDiary.rejected, (state) => {

@@ -35,7 +35,11 @@ export const deleteProductFromDiary = createAsyncThunk(
         `${API_URL}/products/diary/${date}/${productId}`,
         getAuthConfig(token)
       );
-      return { date, productId };
+     const response = await axios.get(
+        `${API_URL}/products/diary/${date}`,
+        getAuthConfig(token)
+      );
+      return { date, products: response.data.products };
     } catch (error) {
       return rejectWithValue(error.response?.data || 'Silme hatası');
     }
