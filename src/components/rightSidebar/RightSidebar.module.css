@@ -1,57 +1,124 @@
 .Sidebar {
-    background-color: #f0f1f3;
-    padding: 30px 20px;
-    border-radius: 8px;
-    min-width: 260px;
-    max-width: 300px;
+  background-color: #f0f1f3;
+  padding: 130px 0px;
+  border-radius: 8px;
+  /* min-width: 260px;
+    max-width: 300px; */
+  width: 100%;
+  height: 100vh;
+  background-image: url("/public/images/rightsidebarbackground.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
 }
-.Date{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 100%;
-    letter-spacing: 4%;
-    color: #212121;
-    margin-bottom: 20px;
+.Date {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 4%;
+  color: #212121;
+  margin-bottom: 20px;
+  margin-left: 200px;
 }
 
 .List {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 30px;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+  max-width: 300px;
+  margin-left: 200px;
 }
+
 .Label {
-    font-size: 14px;
-    color: #9b9faa;
+  font-size: 14px;
+  color: #9b9faa;
 }
 .Value {
-    float: right;
-    font-size: 14px;
-    color: #212121;
-    font-weight: 500;
+  float: right;
+  font-size: 14px;
+  color: #212121;
+  font-weight: 500;
 }
 .NotRecommended {
-    margin-top: 20px;
+  margin-top: 20px;
 }
-.NotRecommendedLabel{
-font-family: Verdana, Geneva, Tahoma, sans-serif;
-font-weight: 700;
-font-size: 14px;
-line-height: 100%;
-letter-spacing: 4%;
-color: #212121;
+.NotRecommendedLabel {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 4%;
+  color: #212121;
+  margin-left: 200px;
 }
 .ProductList {
-    margin-top: 10px;
-    padding-left: 0;
+  margin-top: 10px;
+  padding-left: 0;
+  margin-left: 200px;
 }
 .ProductItem {
   font-size: 14px;
-    color: #9b9faa;
-    list-style-type: none;
+  color: #9b9faa;
+  list-style-type: none;
 }
 .Placeholder {
-    color: #9b9faa;
-    font-style: italic;
-    font-size: 14px;
+  color: #9b9faa;
+  font-style: italic;
+  font-size: 14px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .Sidebar {
+    padding: 20px;
+    background-image: none;
+    background-color: #f0f1f3;
+  }
+  .Date {
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+  .List {
+    margin-left: 40px;
+  }
+  .NotRecommendedLabel {
+    margin-left: 40px;
+  }
+  .ProductList {
+    margin-left: 40px;
+  }
+  .Placeholder{
+    margin-left: 0px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .Sidebar {
+    padding: 20px;
+    background-image: none;
+    background-color: #f0f1f3;
+  }
+  .Date {
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+  .List {
+    margin-left: 40px;
+  }
+  .NotRecommendedLabel {
+    margin-left: 40px;
+  }
+  .ProductList {
+    margin-left: 40px;
+  }
+  .Sidebar {
+    background-image: url("/public/images/rightsidebarbackground.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+  .Placeholder {
+    margin-left: 0px;
+  }
 }

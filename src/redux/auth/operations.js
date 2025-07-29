@@ -29,9 +29,9 @@ export const registerUser = createAsyncThunk(
       });
 
       toast.success("Registration successful!");
-      return response.data;
-
+      return response.data.data;
     } catch (err) {
+      console.error("Register error:", err);
       if (err.response?.status === 409) {
         return thunkAPI.rejectWithValue("User with this email already exists.");
       }
@@ -41,6 +41,7 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
+
 
 export const loginUser = createAsyncThunk(
   "auth/login",
@@ -55,10 +56,10 @@ export const loginUser = createAsyncThunk(
         return thunkAPI.rejectWithValue("Token not found.");
       }
 
-      setAuthHeader(token);
-      toast.success("Login is successful!");
+        setAuthHeader(token);
+        toast.success("Login is successful!");
 
-      return response.data.data;
+        return response.data.data;
     } catch (err) {
       if (err.response?.status === 401) {
         toast.error("Invalid email or password.");
