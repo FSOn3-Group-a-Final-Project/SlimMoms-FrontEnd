@@ -15,16 +15,18 @@ const RegisterForm = () => {
         email: '',
         password: '',
     };
-
-    const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+    
+    const handleSubmit = async (values, { setSubmitting }) => {
         console.log("handleSubmit called with values:", values);
+        
         try {
             await dispatch(registerUser(values)).unwrap();
-            resetForm();
-            navigate('/');
+            toast.success('Registration is successful!');
+            setTimeout(() => {
+                navigate('/');
+            }, 1000);
         } catch (error) {
             console.error("handleSubmit error:", error);
-            toast.error(error?.message || "Registration failed");
         } finally {
             setSubmitting(false);
         }
