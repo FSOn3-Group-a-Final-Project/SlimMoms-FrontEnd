@@ -4,9 +4,15 @@ import toast from "react-hot-toast";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
-const setAuthHeader = (token) => {
+export const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
+
+export const getAuthConfig = (token) => ({
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
 
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = "";
@@ -21,21 +27,18 @@ export const registerUser = createAsyncThunk(
         email,
         password,
       });
-
-      toast.success("Registration successful!");
+      
       return response.data.data;
     } catch (err) {
-      console.error("Register error:", err);
       if (err.response?.status === 409) {
-        return thunkAPI.rejectWithValue("User with this email already exists.");
+        toast.error("User with this email already exists.");
+        return thunkAPI.rejectWithValue(err.message);
       }
-      return thunkAPI.rejectWithValue(
-        err.message || "Registration failed, please try again."
-      );
+      toast.error("Registration failed, please try again.");
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
-
 
 export const loginUser = createAsyncThunk(
   "auth/login",

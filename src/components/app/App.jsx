@@ -2,17 +2,19 @@
 import { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
-// import PrivateRoute from '../../routes/PrivateRoute';
 import  RestrictedRoute  from '../../routes/RestrictedRoute';
 import MainPage from "../../pages/mainPage/MainPage";
-// import DiaryPage from '../../pages/diaryPage/DiaryPage';
-import CalculatorPage from '../../pages/calculatorPage/CalculatorPage';
 import Header from '../header/Header';
-import css from './App.module.css';
 
+import DiaryPage from "../../pages/diaryPage/DiaryPage";
+import CalculatorPage from "../../pages/calculatorPage/CalculatorPage";
+import css from "./App.module.css";
+import PrivateRoute from "../../routes/PrivateRoute";
 
 const LoginPage = lazy(() => import("../../pages/loginPage/LoginPage"));
-const RegisterPage = lazy(() => import('../../pages/registerPage/RegisterPage'));
+const RegisterPage = lazy(() =>
+  import("../../pages/registerPage/RegisterPage")
+);
 
 function App() {
   return (
@@ -23,9 +25,10 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/calculator" element={<CalculatorPage />} />
 
-          {/* <Route path="/login" element={<LoginPage />} /> */}
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-
+          <Route path="/diary" element={<DiaryPage />} />
+          {/*
           <Route
             path="/login"
             element={
@@ -68,5 +71,4 @@ function App() {
 }
 
 export default App;
-
 
