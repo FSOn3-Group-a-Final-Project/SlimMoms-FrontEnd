@@ -4,9 +4,15 @@ import toast from "react-hot-toast";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
-const setAuthHeader = (token) => {
+export const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
+
+export const getAuthConfig = (token) => ({
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
 
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = "";

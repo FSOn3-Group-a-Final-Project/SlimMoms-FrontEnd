@@ -10,6 +10,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import diaryReducer from "../redux/diary/slice.js";
 import authReducer from "../redux/auth/slice.js";
 
 const authPersistConfig = {
@@ -21,6 +22,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    diary: diaryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
