@@ -2,12 +2,12 @@
 import { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
-// import PrivateRoute from '../../routes/PrivateRoute';
 import  RestrictedRoute  from '../../routes/RestrictedRoute';
 import MainPage from "../../pages/mainPage/MainPage";
+import Header from '../header/Header';
+
 import DiaryPage from "../../pages/diaryPage/DiaryPage";
 import CalculatorPage from "../../pages/calculatorPage/CalculatorPage";
-// import Header from '../header/Header';
 import css from "./App.module.css";
 import PrivateRoute from "../../routes/PrivateRoute";
 
@@ -71,3 +71,4 @@ function App() {
 }
 
 export default App;
+
