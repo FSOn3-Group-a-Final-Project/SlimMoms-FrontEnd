@@ -10,8 +10,15 @@ const DiaryDateCalendar = () => {
     dispatch(setSelectedDate(chosenDate));
   };
 
+  const today = new Date().toLocaleDateString("en-CA");
+
   return (
-    <input type="date" value={selectedDate} onChange={handleDateChange} />
+    <input
+      type="date"
+      value={selectedDate}
+      onChange={handleDateChange}
+      max={today}
+    />
   );
 };
 
