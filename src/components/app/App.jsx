@@ -7,7 +7,7 @@ import  RestrictedRoute  from '../../routes/RestrictedRoute';
 import MainPage from "../../pages/mainPage/MainPage";
 // import DiaryPage from '../../pages/diaryPage/DiaryPage';
 import CalculatorPage from '../../pages/calculatorPage/CalculatorPage';
-// import Header from '../header/Header';
+import Header from '../header/Header';
 import css from './App.module.css';
 
 
@@ -68,3 +68,5 @@ function App() {
 }
 
 export default App;
+
+
