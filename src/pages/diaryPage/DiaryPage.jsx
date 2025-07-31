@@ -14,8 +14,8 @@ const DiaryPage = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectSelectedDate);
   const productsData = useSelector(selectProducts)[selectedDate] || {};
-console.log("selectedDate", selectedDate);
-console.log("productsData", productsData);
+  console.log("selectedDate", selectedDate);
+  console.log("productsData", productsData);
 
   useEffect(() => {
     if (selectedDate) {
@@ -24,10 +24,12 @@ console.log("productsData", productsData);
   }, [dispatch, selectedDate]);
 
   return (
-    <div>
-      <DiaryDateCalendar />
-      <DiaryAddProductForm />
-      <DiaryProductsList />
+    <div className="container">
+      <div className="main-content">
+        <DiaryDateCalendar />
+        <DiaryAddProductForm />
+        <DiaryProductsList />
+      </div>
       <RightSidebar
         date={selectedDate}
         left={productsData.left || 0}

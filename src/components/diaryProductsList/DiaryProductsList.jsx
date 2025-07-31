@@ -28,6 +28,7 @@ const DiaryProductsList = () => {
     return <p className={styles.empty}>Product not added yet</p>;
   }
   return (
+    <div className={styles.listWrapper}>
     <ul className={styles.list}>
       {products.map((item) => (
         <DiaryProductsListItem
@@ -37,6 +38,7 @@ const DiaryProductsList = () => {
         />
       ))}
     </ul>
+    </div>
   );
 };
 export default DiaryProductsList;

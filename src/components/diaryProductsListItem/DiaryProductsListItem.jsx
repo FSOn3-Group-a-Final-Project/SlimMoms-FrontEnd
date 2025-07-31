@@ -16,12 +16,12 @@ const DiaryProductsListItem = ({ product, weight }) => {
   return (
     <li className={styles.item}>
       <div className={styles.info}>
-        <p>{product.title}</p>
-        <p>{weight}g</p>
-        <p>{((product.calories / 100) * weight).toFixed(0)} kcal</p>
+        <p className={styles.title}>{product.title}</p>
+        <p className={styles.weight}>{weight}g</p>
+        <p className={styles.calories}>{((product.calories / 100) * weight).toFixed(0)} <span className={styles.kcal}> kcal</span></p>
       </div>
       <button className={styles.deleteBtn} onClick={handleDelete}>
-        ❌
+     ×
       </button>
     </li>
   );
