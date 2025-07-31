@@ -1,16 +1,16 @@
-
 import { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
-import  RestrictedRoute  from '../../routes/RestrictedRoute';
-import MainPage from "../../pages/mainPage/MainPage";
-import Header from '../header/Header';
-
-import DiaryPage from "../../pages/diaryPage/DiaryPage";
-import CalculatorPage from "../../pages/calculatorPage/CalculatorPage";
+import RestrictedRoute from "../../routes/RestrictedRoute";
+import Header from "../header/Header";
 import css from "./App.module.css";
 import PrivateRoute from "../../routes/PrivateRoute";
 
+const MainPage = lazy(() => import("../../pages/mainPage/MainPage"));
+const DiaryPage = lazy(() => import("../../pages/diaryPage/DiaryPage"));
+const CalculatorPage = lazy(() =>
+  import("../../pages/calculatorPage/CalculatorPage")
+);
 const LoginPage = lazy(() => import("../../pages/loginPage/LoginPage"));
 const RegisterPage = lazy(() =>
   import("../../pages/registerPage/RegisterPage")
@@ -20,15 +20,15 @@ function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className={css.appContainer}>
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/calculator" element={<CalculatorPage />} />
+          {/* <Route path="/calculator" element={<CalculatorPage />} />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/diary" element={<DiaryPage />} />
-          {/*
+          <Route path="/diary" element={<DiaryPage />} /> */}
+
           <Route
             path="/login"
             element={
@@ -37,7 +37,7 @@ function App() {
               </RestrictedRoute>
             }
           />
-          {/*
+
           <Route
             path="/register"
             element={
@@ -61,8 +61,8 @@ function App() {
                 <CalculatorPage />
               </PrivateRoute>
             }
-          /> 
-          */}
+          />
+
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
@@ -71,4 +71,3 @@ function App() {
 }
 
 export default App;
-
