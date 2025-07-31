@@ -1,0 +1,13 @@
+.NavigationUL {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px; 
+}
+
+.navLink {
+    text-decoration: none;
+}
