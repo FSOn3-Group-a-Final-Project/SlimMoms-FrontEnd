@@ -1,0 +1,24 @@
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.137);
+}
+.loader {
+    border: 3px solid #f3f3f3;
+    border-radius: 5px;
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background-color: #fff;
+}
+.loadingText {
+    font-size: 20px;
+    color: #817e7e;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
