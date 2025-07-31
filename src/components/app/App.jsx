@@ -1,34 +1,48 @@
-
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
-// import PrivateRoute from '../../routes/PrivateRoute';
-import  RestrictedRoute  from '../../routes/RestrictedRoute';
-import MainPage from "../../pages/mainPage/MainPage";
-import DiaryPage from "../../pages/diaryPage/DiaryPage";
-import CalculatorPage from "../../pages/calculatorPage/CalculatorPage";
-// import Header from '../header/Header';
+import { useDispatch, useSelector } from "react-redux";
+import RestrictedRoute from "../../routes/RestrictedRoute";
+import Header from "../header/Header";
 import css from "./App.module.css";
 import PrivateRoute from "../../routes/PrivateRoute";
+import Loader from "../loader/Loader";
+import { refreshUser } from "../../redux/auth/operations";
+import { selectToken } from "../../redux/auth/selectors";
 
+// const MainPage = lazy(() => new Promise(() => {})); // loader test etmek için bug
+const MainPage = lazy(() => import("../../pages/mainPage/MainPage"));
+const DiaryPage = lazy(() => import("../../pages/diaryPage/DiaryPage"));
+const CalculatorPage = lazy(() =>
+  import("../../pages/calculatorPage/CalculatorPage")
+);
 const LoginPage = lazy(() => import("../../pages/loginPage/LoginPage"));
 const RegisterPage = lazy(() =>
   import("../../pages/registerPage/RegisterPage")
 );
 
 function App() {
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(refreshUser());
+    }
+  }, [dispatch, token]);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <div className={css.appContainer}>
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/calculator" element={<CalculatorPage />} />
+          {/* <Route path="/calculator" element={<CalculatorPage />} />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/diary" element={<DiaryPage />} />
-          {/*
+          <Route path="/diary" element={<DiaryPage />} /> */}
+
           <Route
             path="/login"
             element={
@@ -37,7 +51,7 @@ function App() {
               </RestrictedRoute>
             }
           />
-          {/*
+
           <Route
             path="/register"
             element={
@@ -61,8 +75,8 @@ function App() {
                 <CalculatorPage />
               </PrivateRoute>
             }
-          /> 
-          */}
+          />
+
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>

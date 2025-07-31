@@ -24,9 +24,10 @@ export const authSlice = createSlice({
     builder
       .addCase(registerUser.pending, handlePending)
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.user = { name: action.payload.name, email: action.payload.email };
-        state.token = null;
-        state.isLoggedIn = false;
+        const { accessToken, user } = action.payload;
+        state.user = { name: user.name, email: user.email };
+        state.token = accessToken;
+        state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(registerUser.rejected, handleRejected)
