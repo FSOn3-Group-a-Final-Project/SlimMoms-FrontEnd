@@ -1,8 +1,18 @@
 header {
     display:flex;
-
 }
 
 .headerContainer {
     margin:auto;
 }
+
+.headerUL {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 10px; 
+}
+
