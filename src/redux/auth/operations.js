@@ -27,7 +27,7 @@ export const registerUser = createAsyncThunk(
         email,
         password,
       });
-      
+
       return response.data.data;
     } catch (err) {
       if (err.response?.status === 409) {
@@ -53,10 +53,10 @@ export const loginUser = createAsyncThunk(
         return thunkAPI.rejectWithValue("Token not found.");
       }
 
-        setAuthHeader(token);
-        toast.success("Login is successful!");
+      setAuthHeader(token);
+      toast.success("Login is successful!");
 
-        return response.data.data;
+      return response.data.data;
     } catch (err) {
       if (err.response?.status === 401) {
         toast.error("Invalid email or password.");
@@ -93,7 +93,10 @@ export const refreshUser = createAsyncThunk(
     setAuthHeader(token);
     try {
       const response = await axios.get("/users/current");
-      return response.data;
+      // Eğer response.data.data doğrudan user ise:
+      return response.data.data;
+      // Eğer response.data.data.user ise:
+      // return response.data.data.user;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
