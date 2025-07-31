@@ -5,7 +5,9 @@ import RestrictedRoute from "../../routes/RestrictedRoute";
 import Header from "../header/Header";
 import css from "./App.module.css";
 import PrivateRoute from "../../routes/PrivateRoute";
+import Loader from "../loader/Loader";
 
+// const MainPage = lazy(() => new Promise(() => {})); // loader test etmek için bug
 const MainPage = lazy(() => import("../../pages/mainPage/MainPage"));
 const DiaryPage = lazy(() => import("../../pages/diaryPage/DiaryPage"));
 const CalculatorPage = lazy(() =>
@@ -18,7 +20,7 @@ const RegisterPage = lazy(() =>
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <div className={css.appContainer}>
         <Header />
         <Routes>
