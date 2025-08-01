@@ -25,11 +25,12 @@ const DiaryPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.mainContent}>
-        <DiaryDateCalendar />
+      <DiaryDateCalendar />
+      <div className={styles.addForm}>
         <DiaryAddProductForm />
-        <DiaryProductsList />
       </div>
+
+      <DiaryProductsList />
       <div className={styles.rightSidebar}>
         <RightSidebar
           date={selectedDate}
