@@ -8,6 +8,14 @@
   position: relative; /* çünkü .addForm position:absolute kaldıracağız */
 }
 
+.leftSidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 130px 0 0 0;
+}
+
 .rightSidebar {
   display: flex;
   align-items: flex-end;
@@ -18,6 +26,7 @@
 .addForm {
   position: static;
   margin-bottom: 0;
+  width: -webkit-fill-available; /* genişliği doldur */
 }
 
 /* Tablet ve mobilde tek sütun, sıralama JSX’de istediğin gibi zaten */

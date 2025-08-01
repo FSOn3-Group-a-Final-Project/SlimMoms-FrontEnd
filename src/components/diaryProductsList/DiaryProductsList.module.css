@@ -30,6 +30,7 @@
   position: relative;
   height: 271px;
   overflow: hidden;
+  width: -webkit-fill-available;
 }
 
 .list {

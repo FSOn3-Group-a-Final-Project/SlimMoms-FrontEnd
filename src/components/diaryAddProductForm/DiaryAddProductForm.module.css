@@ -8,7 +8,7 @@
   padding: 0;
   margin-top: 4px;
   list-style: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   z-index: 1000;
 }
 
@@ -29,7 +29,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: #FC842D;
+  background-color: #fc842d;
   border: none;
   font-size: 28px;
   color: white;
@@ -82,17 +82,18 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: #FC842D;
+  background-color: #fc842d;
   border: none;
   font-size: 28px;
   color: white;
   cursor: pointer;
   box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.502);
   z-index: 20;
+  margin-right: 56px;
 }
 
 .buttonAdd {
-  background-color: #FC842D;
+  background-color: #fc842d;
   color: white;
   max-width: 176;
   height: 44;
@@ -105,33 +106,44 @@
 .desktopForm {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 48px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .input {
-  padding: 8px 12px;
-  font-size: 16px;
-  border: none; /* Kenarlardan tümünü kaldır */
-  border-bottom: 1px solid #e0e0e0; /* Sadece alt çizgi */
-  border-radius: 0; /* Kavisleri sıfırla */
-   color: #9B9FAA;
+  padding: 8px 12px 8px 0;
+  font-size: 14px;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0;
+  color: #9b9faa;
   outline: none;
   width: 100%;
-  max-width: 320px;
+  max-width: 240px;
+  font-family: Verdana;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0.04em;
 }
 
 .inputGram {
-  padding: 8px 12px;
+  padding: 8px 0 8px 12px;
   font-size: 16px;
   border: none; /* Kenarlardan tümünü kaldır */
   border-bottom: 1px solid #e0e0e0; /* Sadece alt çizgi */
-  color: #9B9FAA;
+  color: #9b9faa;
   border-radius: 0; /* Kavisleri sıfırla */
   outline: none;
   width: 100%;
-  max-width: 120px;
+  max-width: 107px;
   text-align: end;
+  font-family: Verdana;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0.04em;
+  text-align: right;
 }
 
 .inputContainer {

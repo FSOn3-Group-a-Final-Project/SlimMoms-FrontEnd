@@ -112,7 +112,7 @@ const DiaryAddProductForm = () => {
         <input
           type="number"
           className={styles.inputGram}
-          placeholder="Gram"
+          placeholder="Grams"
           value={weight}
           min={1}
           onChange={(e) => setWeight(Number(e.target.value))}
