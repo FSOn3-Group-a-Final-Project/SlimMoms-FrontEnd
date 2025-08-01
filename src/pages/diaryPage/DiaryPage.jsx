@@ -32,6 +32,7 @@ const DiaryPage = () => {
         <DiaryAddProductForm />
         <DiaryProductsList />
       </div>
+      <div className={styles.rightSidebar}>
       <RightSidebar
         date={selectedDate}
         left={productsData.left || 0}
@@ -40,6 +41,7 @@ const DiaryPage = () => {
         percentOfNormal={productsData.percentOfNormal || 0}
         notRecommended={productsData.notRecommended || []}
       />
+      </div>
     </div>
   );
 };
