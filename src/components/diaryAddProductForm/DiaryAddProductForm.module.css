@@ -109,6 +109,7 @@
   gap: 48px;
   align-items: center;
   justify-content: space-between;
+  width: -webkit-fill-available;
 }
 
 .input {

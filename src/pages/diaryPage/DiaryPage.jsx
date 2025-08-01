@@ -27,11 +27,10 @@ const DiaryPage = () => {
     <div className={styles.container}>
       <div className={styles.leftSidebar}>
         <DiaryDateCalendar />
-        <div className={styles.addForm}>
+        <div className={styles.diaryWrapper}>
           <DiaryAddProductForm />
+          <DiaryProductsList />
         </div>
-
-        <DiaryProductsList />
       </div>
 
       <div className={styles.rightSidebar}>

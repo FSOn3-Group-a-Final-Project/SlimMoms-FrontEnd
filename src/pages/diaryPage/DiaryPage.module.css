@@ -22,11 +22,20 @@
   margin-bottom: 0;
 }
 
-/* .addForm absolute kaldır, normal akışa al */
-.addForm {
-  position: static;
-  margin-bottom: 0;
-  width: -webkit-fill-available; /* genişliği doldur */
+.diaryWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .diaryWrapper {
+    flex-direction: column;
+    gap: 24px;
+  }
 }
 
 /* Tablet ve mobilde tek sütun, sıralama JSX’de istediğin gibi zaten */
