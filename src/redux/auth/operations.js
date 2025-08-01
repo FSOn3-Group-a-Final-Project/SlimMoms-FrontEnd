@@ -94,7 +94,7 @@ export const refreshUser = createAsyncThunk(
     try {
       const response = await axios.get("/users/current");
       // Eğer response.data.data doğrudan user ise:
-      return response.data.data;
+      return response.data.data.user || response.data.data; 
       // Eğer response.data.data.user ise:
       // return response.data.data.user;
     } catch (err) {
