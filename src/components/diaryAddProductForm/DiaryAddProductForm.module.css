@@ -115,9 +115,23 @@
   border: none; /* Kenarlardan tümünü kaldır */
   border-bottom: 1px solid #e0e0e0; /* Sadece alt çizgi */
   border-radius: 0; /* Kavisleri sıfırla */
+   color: #9B9FAA;
   outline: none;
   width: 100%;
   max-width: 320px;
+}
+
+.inputGram {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none; /* Kenarlardan tümünü kaldır */
+  border-bottom: 1px solid #e0e0e0; /* Sadece alt çizgi */
+  color: #9B9FAA;
+  border-radius: 0; /* Kavisleri sıfırla */
+  outline: none;
+  width: 100%;
+  max-width: 120px;
+  text-align: end;
 }
 
 .inputContainer {

@@ -14,7 +14,7 @@ const DiaryAddProductForm = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState("");
-  const [weight, setWeight] = useState(100);
+  const [weight, setWeight] = useState(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -74,7 +74,7 @@ const DiaryAddProductForm = () => {
     setSearchTerm("");
     setProducts([]);
     setSelectedProductId("");
-    setWeight(100);
+    setWeight(null);
     setShowSuggestions(false);
     if (isMobile) setShowForm(false);
   };
@@ -111,7 +111,7 @@ const DiaryAddProductForm = () => {
                 )}
         <input
           type="number"
-          className={styles.input}
+          className={styles.inputGram}
           placeholder="Gram"
           value={weight}
           min={1}
@@ -197,7 +197,7 @@ const DiaryAddProductForm = () => {
             )}
             <input
               type="number"
-              className={styles.input}
+              className={styles.inputGram}
               placeholder="Gram"
               value={weight}
               min={1}
