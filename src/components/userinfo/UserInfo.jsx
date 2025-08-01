@@ -4,10 +4,9 @@ import { selectUser, selectIsRefreshing } from "../../redux/auth/selectors";
 
 const UserInfo = () => {
   const user = useSelector(selectUser);
+  console.log("UserInfo component rendered with user:", user);
   const isRefreshing = useSelector(selectIsRefreshing);
 
-  // Eğer refresh sırasında user yoksa, eski user'ı göstermek için localStorage'dan çekebilirsin
-  // veya sadece loading gösterebilirsin:
   if (isRefreshing && !user?.name && !user?.username) {
     return <div className={css.UserInfoContainer}>Yükleniyor...</div>;
   }
