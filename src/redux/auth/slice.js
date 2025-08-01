@@ -9,7 +9,7 @@ const handlePending = (state) => {
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.isRefreshing = false;
-  state.error = action.payload || action.error.message;
+  state.error = action.payload || action.error?.message;
 };
 
 export const authSlice = createSlice({
@@ -19,25 +19,38 @@ export const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isLoading: false,
+    error: null,
   },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, handlePending)
       .addCase(registerUser.fulfilled, (state, action) => {
-        const { accessToken, user } = action.payload;
-        state.user = { name: user.name, email: user.email };
-        state.token = accessToken;
-        state.isLoggedIn = true;
+        const { user, accessToken } = action.payload;
+
+        state.user = {
+          name: user?.name || null,
+          email: user?.email || null,
+        };
+
+        state.token = accessToken || null;
+        state.isLoggedIn = !!accessToken;
         state.isLoading = false;
       })
       .addCase(registerUser.rejected, handleRejected)
 
       .addCase(loginUser.pending, handlePending)
       .addCase(loginUser.fulfilled, (state, action) => {
-        const { accessToken, user } = action.payload;
-        state.user = { name: user.name, email: user.email };
+        const { user, accessToken } = action.payload;
+
+        state.user = {
+          name: user?.name || null,
+          email: user?.email || null,
+        };
+
         state.token = accessToken;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(loginUser.rejected, handleRejected)
 
@@ -46,6 +59,7 @@ export const authSlice = createSlice({
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.isLoading = false;
       })
       .addCase(logoutUser.rejected, handleRejected)
 
