@@ -10,6 +10,8 @@ import {
   selectProducts,
 } from "../../redux/diary/selectors";
 
+import styles from "./DiaryPage.module.css";
+
 const DiaryPage = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectSelectedDate);
@@ -24,8 +26,8 @@ const DiaryPage = () => {
   }, [dispatch, selectedDate]);
 
   return (
-    <div className="container">
-      <div className="main-content">
+    <div className={styles.container}>
+      <div className={styles.mainContent}>
         <DiaryDateCalendar />
         <DiaryAddProductForm />
         <DiaryProductsList />
