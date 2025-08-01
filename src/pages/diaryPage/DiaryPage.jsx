@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDiaryProductsByDate } from "../../redux/diary/operations";
 import {
   selectSelectedDate,
-  selectProducts,
+  selectDiarySummary,
 } from "../../redux/diary/selectors";
 
 import styles from "./DiaryPage.module.css";
@@ -15,9 +15,7 @@ import styles from "./DiaryPage.module.css";
 const DiaryPage = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectSelectedDate);
-  const productsData = useSelector(selectProducts)[selectedDate] || {};
-  console.log("selectedDate", selectedDate);
-  console.log("productsData", productsData);
+  const summary = useSelector(selectDiarySummary);
 
   useEffect(() => {
     if (selectedDate) {
@@ -33,14 +31,14 @@ const DiaryPage = () => {
         <DiaryProductsList />
       </div>
       <div className={styles.rightSidebar}>
-      <RightSidebar
-        date={selectedDate}
-        left={productsData.left || 0}
-        consumed={productsData.consumed || 0}
-        dailyRate={productsData.dailyRate || 0}
-        percentOfNormal={productsData.percentOfNormal || 0}
-        notRecommended={productsData.notRecommended || []}
-      />
+        <RightSidebar
+          date={selectedDate}
+          consumed={summary.consumed}
+          left={summary.left}
+          dailyRate={summary.dailyRate}
+          percentOfNormal={summary.percentOfNormal}
+          notRecommended={summary.notRecommended}
+        />
       </div>
     </div>
   );
