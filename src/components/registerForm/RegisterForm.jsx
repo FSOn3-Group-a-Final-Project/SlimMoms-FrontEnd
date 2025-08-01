@@ -16,14 +16,12 @@ const RegisterForm = () => {
         password: '',
     };
     
-    const handleSubmit = async (values, { setSubmitting }) => {
-        console.log("handleSubmit called with values:", values);
-        
+    const handleSubmit = async (values, { setSubmitting }) => {        
         try {
             await dispatch(registerUser(values)).unwrap();
             toast.success('Registration is successful!');
             setTimeout(() => {
-                navigate('/');
+                navigate('/login');
             }, 1000);
         } catch (error) {
             console.error("handleSubmit error:", error);
