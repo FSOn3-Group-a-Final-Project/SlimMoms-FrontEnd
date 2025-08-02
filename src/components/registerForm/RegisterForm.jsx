@@ -2,8 +2,8 @@ import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
-import { registerUser } from '../../redux/auth/operations';
+import { registerUser, loginUser } from '../../redux/auth/operations';
+import { toast, Toaster } from 'react-hot-toast';
 import css from './RegisterForm.module.css';
 
 const RegisterForm = () => {
@@ -16,12 +16,19 @@ const RegisterForm = () => {
         password: '',
     };
     
-    const handleSubmit = async (values, { setSubmitting }) => {        
+    const handleSubmit = async (values, { setSubmitting }) => {
         try {
             await dispatch(registerUser(values)).unwrap();
-            toast.success('Registration is successful!');
+            
+            toast.success("Registration is successful!");
+            
+            await dispatch(loginUser({
+                email: values.email,
+                password: values.password
+            })).unwrap();
+            
             setTimeout(() => {
-                navigate('/login');
+                navigate('/diary');
             }, 1000);
         } catch (error) {
             console.error("handleSubmit error:", error);
@@ -38,7 +45,7 @@ const RegisterForm = () => {
 
     return (
         <div className={css.regContainer}>
-            <Toaster position="top-center" reverseOrder={false} />
+            <Toaster position="top-center" />
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}

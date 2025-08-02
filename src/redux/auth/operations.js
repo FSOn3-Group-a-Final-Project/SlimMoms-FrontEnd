@@ -27,8 +27,9 @@ export const registerUser = createAsyncThunk(
         email,
         password,
       });
-
+      
       return response.data.data;
+    
     } catch (err) {
       if (err.response?.status === 409) {
         toast.error("User with this email already exists.");
