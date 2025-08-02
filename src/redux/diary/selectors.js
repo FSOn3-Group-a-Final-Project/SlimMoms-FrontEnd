@@ -1,8 +1,8 @@
-import { createSelector } from '@reduxjs/toolkit';
+export const selectUserDailyInfo = (state) => state.diary.userDailyInfo;
+import { createSelector } from "@reduxjs/toolkit";
 
 export const selectSelectedDate = (state) => state.diary.selectedDate;
 export const selectProducts = (state) => state.diary.products || {};
-
 
 export const selectDiaryProductsByDate = createSelector(
   [selectProducts, selectSelectedDate],
@@ -16,18 +16,24 @@ export const selectDiaryProductsByDate = createSelector(
 export const selectDiaryLoading = (state) => state.diary.loading;
 
 export const selectDiarySummary = createSelector(
-  [selectProducts, selectSelectedDate],
-  (products, selectedDate) => {
+  [selectProducts, selectSelectedDate, selectUserDailyInfo],
+  (products, selectedDate, userDailyInfo) => {
     const entry = products[selectedDate];
-    if (!entry || !Array.isArray(entry.products)) return {
-      consumed: 0,
-      left: 0,
-      dailyRate: 0,
-      percentOfNormal: 0,
-      notRecommended: [],
-    };
+    if (!entry || !Array.isArray(entry.products)) {
+      const dailyRate = userDailyInfo?.dailyRate || 0;
+      const notRecommended = userDailyInfo?.notRecommended || [];
+      return {
+        consumed: 0,
+        left: dailyRate,
+        dailyRate,
+        percentOfNormal: 0,
+        notRecommended,
+      };
+    }
 
-    const dailyRate = entry.dailyRate || 0;
+    const dailyRate = entry.dailyRate || userDailyInfo?.dailyRate || 0;
+    const notRecommended =
+      entry.notRecommended || userDailyInfo?.notRecommended || [];
     const productList = entry.products;
 
     const consumed = productList.reduce((sum, item) => {
@@ -35,14 +41,16 @@ export const selectDiarySummary = createSelector(
     }, 0);
 
     const left = dailyRate - consumed;
-    const percentOfNormal = dailyRate ? Math.round((consumed / dailyRate) * 100) : 0;
+    const percentOfNormal = dailyRate
+      ? Math.round((consumed / dailyRate) * 100)
+      : 0;
 
     return {
       consumed,
       left,
       dailyRate,
       percentOfNormal,
-      notRecommended: entry.notRecommended || [],
+      notRecommended,
     };
   }
 );

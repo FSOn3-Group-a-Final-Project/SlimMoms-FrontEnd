@@ -8,10 +8,17 @@ const diarySlice = createSlice({
     selectedDate: new Date().toISOString().split("T")[0], // Bugünün tarihi yyyy-mm-dd
     products: {},
     loading: false,
+    userDailyInfo: {
+      dailyRate: 0,
+      notRecommended: [],
+    },
   },
   reducers: {
     setSelectedDate: (state, action) => {
       state.selectedDate = action.payload;
+    },
+    setUserDailyInfo: (state, action) => {
+      state.userDailyInfo = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -44,5 +51,5 @@ const diarySlice = createSlice({
   },
 });
 
-export const { setSelectedDate } = diarySlice.actions;
+export const { setSelectedDate, setUserDailyInfo } = diarySlice.actions;
 export default diarySlice.reducer;
