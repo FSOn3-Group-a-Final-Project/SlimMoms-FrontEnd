@@ -116,8 +116,9 @@
 
 .desktopForm {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 48px;
+  /* gap: 48px; */
   align-items: center;
   justify-content: space-between;
   width: -webkit-fill-available;
@@ -132,7 +133,7 @@
   color: #9b9faa;
   outline: none;
   width: webkit-fill-available;
-  
+  text-align: left; 
   font-family: Verdana;
   font-weight: 700;
   line-height: 100%;
@@ -148,14 +149,12 @@
   border-radius: 0; /* Kavisleri sıfırla */
   outline: none;
   width: webkit-fill-available;
- 
-  text-align: end;
   font-family: Verdana;
   font-weight: 700;
   font-size: 14px;
   line-height: 100%;
   letter-spacing: 0.04em;
-  text-align: left;
+  text-align: start;
 }
 
 .inputContainer {
@@ -165,5 +164,19 @@
 @media (min-width: 768px) {
   .input {
     width: auto;
+    padding-left: 0;
   }
+
+  .inputGram {
+    width: auto;
+    text-align: end;
+    padding-right: 0;
+  }
+
+.desktopForm {
+
+    gap: 36px;
+  }
+
+
 }
