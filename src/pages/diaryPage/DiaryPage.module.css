@@ -1,0 +1,94 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 20px;
+
+  position: relative; /* çünkü .addForm position:absolute kaldıracağız */
+  min-width: 320px;
+}
+
+.diaryContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+    margin : 20px;
+  margin-top: 30px;
+}
+
+.rightSidebar {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0;
+}
+
+.diaryWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .diaryWrapper {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+/* Tablet ve mobilde tek sütun, sıralama JSX’de istediğin gibi zaten */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .container {
+    grid-template-columns: 1fr;
+    /* padding: 20px 40px; */
+    margin: 0;
+  }
+
+  .diaryContent {
+    margin: 20px;
+    margin-top: 30px; /* üstten boşluk */
+    margin-right: 200px; /* sağdan boşluk */
+  }
+
+  .diaryWrapper {
+    gap: 24px;
+  }
+
+}
+
+/* Masaüstü 1280px+ için 2 sütun ve sidebar sağda uzun */
+@media (min-width: 1280px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 30px 50px;
+    padding: 130px 40px;
+  }
+
+  /* Grid alanlarını ayarla */
+  .container > :nth-child(1) { /* Takvim */
+    grid-column: 1 / 2;
+    grid-row: 1;
+  }
+
+  .container > .addForm { /* Form */
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+
+  .container > :nth-child(3) { /* Ürün listesi */
+    grid-column: 1 / 2;
+    grid-row: 3;
+  }
+
+  .rightSidebar {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
+    height: 100%;
+    margin: 0; /* margin kaldır */
+   
+  }
+}
