@@ -34,7 +34,12 @@ export const authSlice = createSlice({
       .addCase(loginUser.pending, handlePending)
       .addCase(loginUser.fulfilled, (state, action) => {
         const { accessToken, user } = action.payload;
-        state.user = { name: user.name, email: user.email };
+         console.log("Login olan kullanıcı bilgisi:", user); // Test için ekledim.
+        state.user = {
+          name: user.name,
+          email: user.email,
+          bloodType: user.bloodType, // kan grubu eklendi
+        };
         state.token = accessToken;
         state.isLoggedIn = true;
       })
@@ -51,8 +56,13 @@ export const authSlice = createSlice({
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
+      // Kan grubu çekmek için değişiklik. orjinal hali en altta mevcut
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+          bloodType: action.payload.bloodType, // Kan grubu
+        };
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -61,3 +71,9 @@ export const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
+
+// .addCase(refreshUser.fulfilled, (state, action) => {
+//       state.user = action.payload;
+//       state.isLoggedIn = true;
+//       state.isRefreshing = false;
+//     })
