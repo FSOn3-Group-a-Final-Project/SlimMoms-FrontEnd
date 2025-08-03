@@ -36,7 +36,7 @@ function App() {
     <Suspense fallback={<Loader />}>
       <div className={css.appContainer}>
         <Header />
-        <Toaster />
+        <Toaster position="top-center"/>
         <Routes>
           <Route path="/" element={<MainPage />} />
           {/* <Route path="/calculator" element={<CalculatorPage />} />
