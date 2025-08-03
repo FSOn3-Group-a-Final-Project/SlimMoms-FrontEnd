@@ -1,0 +1,38 @@
+.dateInput {
+  font-family: Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #000;
+  gap: 10px;
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.dateWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: #9b9faa;
+  width: 18px;
+  height: 20px;
+  cursor: pointer;
+  gap: 10px;
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(32%) sepia(5%) saturate(1322%)
+    hue-rotate(175deg);
+}
+
+
+@media screen and (min-width: 768px) {
+    .dateInput {
+        font-size: 34px;
+    }
+}
