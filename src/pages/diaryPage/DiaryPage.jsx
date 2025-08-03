@@ -16,7 +16,14 @@ const DiaryPage = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectSelectedDate);
   const summary = useSelector(selectDiarySummary);
-
+const formatDate = (dateStr) => {
+  if (!dateStr) return '';
+  const date = new Date(dateStr);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}.${month}.${year}`;
+};
   useEffect(() => {
     if (selectedDate) {
       dispatch(fetchDiaryProductsByDate(selectedDate));
@@ -35,7 +42,7 @@ const DiaryPage = () => {
 
       <div className={styles.rightSidebar}>
         <RightSidebar
-          date={selectedDate}
+          date={formatDate(selectedDate)}
           consumed={summary.consumed}
           left={summary.left}
           dailyRate={summary.dailyRate}

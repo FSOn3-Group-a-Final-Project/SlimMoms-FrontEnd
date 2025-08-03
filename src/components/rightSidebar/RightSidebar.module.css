@@ -12,6 +12,7 @@
 
 .SidebarContent {
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 42px;
 }
@@ -71,13 +72,15 @@
   .SidebarContent {
     flex-direction: row;
     justify-content: center;
-    gap: 40px;
+    align-items: center;
   }
 
   .SidebarSummary,
   .NotRecommended {
     width: 288px;
     height: 166px;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }
 
@@ -100,7 +103,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 42px;
+    /* gap: 42px; */
     height: 100%;
   }
 
