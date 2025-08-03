@@ -6,11 +6,11 @@
     max-width: 300px; */
   width: -webkit-fill-available;
   height: 100%;
-  background-image: url("/public/images/rightsidebarbackground.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right;
+  background-image: none
 }
+
+
+
 .Date {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 700;
@@ -19,7 +19,7 @@
   letter-spacing: 4%;
   color: #212121;
   margin-bottom: 20px;
-  margin-left: 200px;
+  /* margin-left: 200px; */
 }
 
 .List {
@@ -27,7 +27,7 @@
   padding: 0;
   margin-bottom: 30px;
   max-width: 300px;
-  margin-left: 200px;
+  /* margin-left: 200px; */
 }
 
 .Label {
@@ -96,29 +96,48 @@
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .Sidebar {
     padding: 20px;
-    background-image: none;
     background-color: #f0f1f3;
+     background-image: url("/public/images/rightsidebarbackgroundtablet.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
   }
+
+  .SidebarContent {
+  display: flex;
+  flex-direction: row;
+
+        align-items: baseline;
+        justify-content: flex-start;
+        gap: 120px;
+}
+
   .Date {
     margin-top: 40px;
-    margin-left: 40px;
+    /* margin-left: 40px; */
   }
-  .List {
+  /* .List {
     margin-left: 40px;
-  }
+  } */
   .NotRecommendedLabel {
     margin-left: 40px;
   }
   .ProductList {
     margin-left: 40px;
   }
+  
+  .Placeholder {
+    margin-left: 0px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
   .Sidebar {
+    padding: 20px;
+    background-color: #f0f1f3;
     background-image: url("/public/images/rightsidebarbackground.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
-  }
-  .Placeholder {
-    margin-left: 0px;
   }
 }

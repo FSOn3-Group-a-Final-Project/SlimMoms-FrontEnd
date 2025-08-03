@@ -43,8 +43,20 @@
 @media (min-width: 768px) and (max-width: 1279px) {
   .container {
     grid-template-columns: 1fr;
-    padding: 20px 40px;
+    /* padding: 20px 40px; */
+    margin: 0;
   }
+
+  .diaryContent {
+    margin: 20px;
+    margin-top: 30px; /* üstten boşluk */
+    margin-right: 200px; /* sağdan boşluk */
+  }
+
+  .diaryWrapper {
+    gap: 24px;
+  }
+
 }
 
 /* Masaüstü 1280px+ için 2 sütun ve sidebar sağda uzun */
