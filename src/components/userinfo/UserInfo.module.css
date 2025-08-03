@@ -9,4 +9,42 @@
   margin: 0;
   padding: 0;
   gap: 20px; 
+
+  position: absolute;
+  top:80px;
+  height: 40px;
+  right:0px;
+  left:0px;
+  background-color: #EFF1F3;
+
+  font-family: Verdana;
+  font-size: 14px;
+  color: #9B9FAA;
+  font-weight: 700;
+  line-height: 14px; 
+  letter-spacing: 0.56px;
+
 }
+.UserInfoContainerTablet {
+  background-color:unset;
+  top:23px;
+  right:48px;
+}
+.UserInfoContainerDesktop {
+  background-color:unset;
+  top:130px;
+}
+
+.LogoutButton {
+  position: absolute;
+  right:20px;
+}
+
+.userName {
+  position: absolute;
+  right:84px;
+  padding-right: 16px;
+  border-right: 2px solid #E0E0E0;
+  color:#212121;
+}
+
