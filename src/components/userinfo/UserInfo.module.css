@@ -33,6 +33,8 @@
 .UserInfoContainerDesktop {
   background-color:unset;
   top:130px;
+  left:unset;
+  right:16px;
 }
 
 .LogoutButton {
