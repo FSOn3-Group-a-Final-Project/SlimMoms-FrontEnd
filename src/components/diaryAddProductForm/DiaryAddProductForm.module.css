@@ -1,0 +1,182 @@
+.suggestionsListScrollable {
+  max-height: 160px; /* Yaklaşık 4 ürün görünür */
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  padding: 0;
+  margin-top: 4px;
+  list-style: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.suggestionItem {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.suggestionItem:hover {
+  background-color: #f0f0f0;
+}
+
+.fabButton {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .fabButton {
+    display: flex;
+    position: static;
+    margin: 60px auto;
+    margin-top: 10px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #fc842d;
+    border: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.502);
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    order: 2;
+  }
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modal form */
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+/* Modal header with back button */
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+}
+
+.button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #fc842d;
+  border: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.502);
+  z-index: 20;
+  margin-right: 56px;
+}
+
+.buttonAdd {
+  background-color: #fc842d;
+   box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.502);
+  color: white;
+  max-width: 176;
+  height: 44;
+  opacity: 1;
+  border-radius: 30px;
+  border: none;
+  padding: 13px 46px;
+  cursor: pointer;
+}
+
+.desktopForm {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* gap: 48px; */
+  align-items: center;
+  justify-content: space-between;
+  width: -webkit-fill-available;
+}
+
+.input {
+  padding: 8px 12px ;
+  font-size: 14px;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0;
+  color: #9b9faa;
+  outline: none;
+  width: webkit-fill-available;
+  text-align: left; 
+  font-family: Verdana;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0.04em;
+}
+
+.inputGram {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none; /* Kenarlardan tümünü kaldır */
+  border-bottom: 1px solid #e0e0e0; /* Sadece alt çizgi */
+  color: #9b9faa;
+  border-radius: 0; /* Kavisleri sıfırla */
+  outline: none;
+  width: webkit-fill-available;
+  font-family: Verdana;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0.04em;
+  text-align: start;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .input {
+    width: auto;
+    padding-left: 0;
+  }
+
+  .inputGram {
+    width: auto;
+    text-align: end;
+    padding-right: 0;
+  }
+
+.desktopForm {
+flex-wrap: nowrap;
+    gap: 36px;
+  }
+
+
+}

@@ -1,0 +1,86 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 0;
+  font-family: Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: 0.04em;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.title {
+  flex: 3;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 4px;
+  text-align: left;
+}
+
+.weight,
+.calories {
+  flex: 1;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 4px;
+  text-align: right;
+  align-items: end;
+}
+
+.kcal {
+  font-size: 10px;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+/* .left {
+  flex: 1;
+  text-align: left;
+}
+
+.right {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+  align-items: center;
+  text-align: right;
+} */
+
+.deleteBtn {
+  background: transparent;
+  border: none;
+  color: #9b9faa;
+  font-size: 28px;
+  cursor: pointer;
+  margin-left: 12px;
+  line-height: 1;
+}
+
+.deleteBtn:hover {
+  color: #7a7d84;
+}
+
+
+@media screen and (min-width: 768px) {
+  .title,
+  .weight,
+  .calories {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+  }
+  .info {
+    gap: 36px;
+  }
+  .kcal {
+    font-size: 14px; /* Artık küçültülmüyor */
+  }
+
+}

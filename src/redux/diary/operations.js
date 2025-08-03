@@ -18,6 +18,7 @@ export const addProductToDiary = createAsyncThunk(
         
       );
       dispatch(refreshUser());
+      console.log(response.data)
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || 'Sunucu hatası');
