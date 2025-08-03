@@ -66,6 +66,6 @@ const diarySlice = createSlice({
   },
 });
 
-export const { setSelectedDate, setCalorieResult } = diarySlice.actions;
+export const { setSelectedDate, setCalorieResult, setUserDailyInfo } = diarySlice.actions;
 
 export default diarySlice.reducer;

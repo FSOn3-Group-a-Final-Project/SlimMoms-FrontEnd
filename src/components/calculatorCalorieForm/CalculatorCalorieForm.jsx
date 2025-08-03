@@ -4,11 +4,8 @@ import styles from "./CalculatorCalorieForm.module.css";
 import { calculateDailyCalories } from "../../utils/calculations";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUserDailyInfo } from "../../redux/diary/slice";
 import Modal from "../modal/Modal";
 import DailyCalorieIntake from "../dailyCalorieIntake/DailyCalorieIntake";
-import { useDispatch } from "react-redux";
-import { calculateCalories } from "../../redux/diary/operations";
 import axios from "axios";
 import { setCalorieResult } from "../../redux/diary/slice";
 
