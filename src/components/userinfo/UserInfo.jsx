@@ -2,12 +2,15 @@ import css from "./UserInfo.module.css";
 import { useSelector, useDispatch  } from "react-redux";
 import { selectUser, selectIsRefreshing } from "../../redux/auth/selectors";
 import { logoutUser } from "../../redux/auth/operations";
-
+import useMedia from "../../hooks/useMedia";
 
 const UserInfo = () => {
+  const { isMobile, isTablet, isDesktop } = useMedia();
+
   const user = useSelector(selectUser);
   console.log("UserInfo component rendered with user:", user);
   const isRefreshing = useSelector(selectIsRefreshing);
+
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -19,8 +22,9 @@ const UserInfo = () => {
   }
 
   return (
-    <div className={css.UserInfoContainer}>
-      <p>{user?.name || user?.username || "Kullanıcı adı yok"}</p>
+    <div className={`${css.UserInfoContainer} ${isDesktop ? css.UserInfoContainerDesktop : ''} ${isTablet ? css.UserInfoContainerTablet : ''}`}>
+      <div className={css.UserInfoBG}></div>
+      <p className={css.userName}>{user?.name || user?.username || "Kullanıcı adı yok"}</p>
       <p onClick={handleLogout} className={css.LogoutButton}>Exit</p>
     </div>
   );

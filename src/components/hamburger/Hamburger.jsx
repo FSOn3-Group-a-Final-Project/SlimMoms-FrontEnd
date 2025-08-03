@@ -3,13 +3,10 @@ import { useState } from 'react';
 import hamburger from '/images/hamburger.png?url';
 import hamburgerClose from '/images/hamburgerClose.png?url';
 import HamburgerModal from '../hamburgerModal/HamburgerModal';
-//import useMedia from "../../hooks/useMedia";
-//import { useSelector } from "react-redux";
-//import { selectIsLoggedIn } from "../../redux/auth/selectors"
+import useMedia from "../../hooks/useMedia";
 
 const Hamburger = () => {
-    //const { isMobile, isTablet } = useMedia();
-    //const isLogged = useSelector(selectIsLoggedIn);
+    const { isTablet, isDesktop } = useMedia();
     const [isHamburgerModalOpen, setIsHamburgerModalOpen] = useState(false);
 
     const toggleHamburgerModal = () => {
@@ -18,7 +15,7 @@ const Hamburger = () => {
 
     return(
         <div className={css.hamburgerMainContainer}>
-            <div onClick={toggleHamburgerModal} className={css.HamburgerContainer}>
+            <div onClick={toggleHamburgerModal} className={`${css.HamburgerContainer} ${isDesktop ? css.HamburgerContainerDesktop : ''} ${isTablet ? css.HamburgerContainerTablet : ''}`}>
                 {isHamburgerModalOpen ? <img src={hamburgerClose}></img>  : <img src={hamburger}></img>}
             </div>
             {isHamburgerModalOpen ? <HamburgerModal/> : ''}

@@ -6,13 +6,13 @@ import useMedia from "../../hooks/useMedia";
 
 const Navigation = () => {
     const isLogged = useSelector(selectIsLoggedIn);
-    const { isMobile, isTablet } = useMedia();
+    const { isMobile, isTablet, isDesktop } = useMedia();
 
     return (
         <div className={css.NavigationContainer}>
             {isLogged ? 
             <div> 
-                <ul className={`${css.NavigationUL} ${(isMobile || isTablet) ? css.deactiveNav : ''}`}>
+                <ul className={`${css.NavigationUL} ${isDesktop ? css.NavigationUlDesktop : ''} ${(isMobile || isTablet) ? css.deactiveNav : ''}`}>
                     <li>
                         <NavLink to="/diary" className={css.navLink}>
                             <p>DIARY</p>
@@ -27,7 +27,7 @@ const Navigation = () => {
             </div>
             :
             <div> 
-                <ul className={css.NavigationUL}>
+                <ul className={`${css.NavigationUL} ${isDesktop ? css.NavigationUlDesktop : ''}`}>
                     <li>
                         <NavLink to="/login" className={css.navLink}>
                             <p>LOGIN</p>

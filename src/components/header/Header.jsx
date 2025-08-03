@@ -6,17 +6,17 @@ import Hamburger from '../hamburger/Hamburger';
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { NavLink } from "react-router-dom";
-
 import useMedia from "../../hooks/useMedia";
 
 const Header = () => {
     const isLogged = useSelector(selectIsLoggedIn);
-    const { isMobile, isTablet } = useMedia();
+    const { isMobile, isTablet, isDesktop } = useMedia();
     return (
-        <header>
-            <div className={css.headerContainer}>
-                <ul className={css.headerUL}>
-                    <li >
+        <header className={`${isDesktop ? css.headerDesktop : ''} ${isTablet ? css.headerTablet : ''} `}>
+            <div className={`${isDesktop ? css.headerContainerDesktop : css.headerContainer}`}>
+                
+                <ul className={`${css.headerUL} ${isDesktop ? css.headerULDesktop : ''} ${isTablet ? css.headerULTablet : ''} `}>
+                    <li>
                         <NavLink to="/diary">
                             <Logo />
                         </NavLink>
