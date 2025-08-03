@@ -3,8 +3,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   gap: 20px;
-  margin : 20px;
-  margin-top: 30px;
+
   position: relative; /* çünkü .addForm position:absolute kaldıracağız */
   min-width: 320px;
 }
@@ -14,7 +13,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  
+    margin : 20px;
+  margin-top: 30px;
 }
 
 .rightSidebar {
@@ -87,7 +87,8 @@
   .rightSidebar {
     grid-column: 2 / 3;
     grid-row: 1 / 4;
+    height: 100%;
     margin: 0; /* margin kaldır */
-    align-self: start; /* üstten hizala daha iyi görünür */
+   
   }
 }
