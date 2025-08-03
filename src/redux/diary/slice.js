@@ -9,10 +9,12 @@ const diarySlice = createSlice({
     selectedDate: new Date().toISOString().split("T")[0], // Bugünün tarihi yyyy-mm-dd
     products: {},
     loading: false,
+
     calorieResult: {
       // kan grubu diyet için
       calories: null,
       forbiddenProducts: [],
+
     },
   },
   reducers: {
@@ -23,6 +25,9 @@ const diarySlice = createSlice({
     },
     setSelectedDate: (state, action) => {
       state.selectedDate = action.payload;
+    },
+    setUserDailyInfo: (state, action) => {
+      state.userDailyInfo = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -62,4 +67,5 @@ const diarySlice = createSlice({
 });
 
 export const { setSelectedDate, setCalorieResult } = diarySlice.actions;
+
 export default diarySlice.reducer;

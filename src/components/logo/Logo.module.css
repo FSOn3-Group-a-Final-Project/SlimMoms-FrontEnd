@@ -1,0 +1,11 @@
+.logoContainer {
+    position: absolute;
+    left:20px;
+    top:20px;
+}
+
+.logoContainerDesktop {
+    position: absolute;
+    top:80px;
+    left:16px;
+}

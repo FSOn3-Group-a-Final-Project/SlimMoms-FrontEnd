@@ -43,6 +43,7 @@ const notRecommended = Array.isArray(forbiddenProducts)
   return (
     <>
       <aside className={styles.Sidebar}>
+
         <p className={styles.Date}>Summary for {selectedDate}</p>
         <ul className={styles.List}>
           <li>
@@ -69,14 +70,11 @@ const notRecommended = Array.isArray(forbiddenProducts)
               notRecommended.map((item, index) => (
                 <li key={index} className={styles.ProductItem}>
                 {typeof item === "string" ? item : item.title}
+
                 </li>
-              ))
-            ) : (
-              <li className={styles.Placeholder}>
-                Your diet will be displayed here
-              </li>
-            )}
-          </ul>
+              )}
+            </ul>
+          </div>
         </div>
       </aside>
     </>

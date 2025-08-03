@@ -4,7 +4,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: graysale;
   color: #212121;
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow-y: auto;
+  height: 100vh;
 }
 
 ul {

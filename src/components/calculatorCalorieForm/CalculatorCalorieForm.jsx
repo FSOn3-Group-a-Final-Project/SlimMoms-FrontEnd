@@ -3,6 +3,8 @@ import * as Yup from "yup";
 import styles from "./CalculatorCalorieForm.module.css";
 import { calculateDailyCalories } from "../../utils/calculations";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setUserDailyInfo } from "../../redux/diary/slice";
 import Modal from "../modal/Modal";
 import DailyCalorieIntake from "../dailyCalorieIntake/DailyCalorieIntake";
 import { useDispatch } from "react-redux";
@@ -34,12 +36,26 @@ const validationSchema = Yup.object({
   bloodType: Yup.string().required("Blood type is required"),
 });
 
+// Kan grubuna göre önerilmeyen ürünler
+const notAllowedFoodsByBloodType = {
+  1: ["Wheat", "Corn", "Lentils", "Peanuts", "Red meat"],
+  2: ["Red meat", "Dairy", "Kidney beans", "Wheat", "Corn"],
+  3: ["Chicken", "Corn", "Wheat", "Tomatoes", "Peanuts"],
+  4: ["Red meat", "Kidney beans", "Corn", "Buckwheat", "Sesame seeds"],
+};
+
+function getNotAllowedFoods(bloodType) {
+  return notAllowedFoodsByBloodType[bloodType] || [];
+}
+
 const CalculatorCalorieForm = ({ onCalculate }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [calorieData, setCalorieData] = useState({
     calories: 0,
+
     notAllowedFoods: [], // Örnek veri
+
   });
 
   const openModal = () => {
@@ -58,6 +74,7 @@ const CalculatorCalorieForm = ({ onCalculate }) => {
       bloodType: "1",
     },
     validationSchema: validationSchema,
+
     onSubmit: async (values, { resetForm }) => {   try {//  Günlük kalori hesaplaması
      const calories = calculateDailyCalories(values);
 
@@ -87,6 +104,7 @@ const CalculatorCalorieForm = ({ onCalculate }) => {
   dispatch(setCalorieResult({ calories, forbiddenProducts: forbiddenFoods }));
      openModal();
      resetForm();
+
       } catch (error) {
         console.error("Error during form submission:", error);
       }
