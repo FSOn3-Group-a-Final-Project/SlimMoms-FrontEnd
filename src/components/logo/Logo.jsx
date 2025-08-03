@@ -10,27 +10,11 @@ const Logo = () => {
 
     return (
         <div className={css.LogoContainer}>
-
-            {isMobile && 
             <div>
-                <img src={smallLogo}/>
-            </div>
-            }
-
-            {isTablet && 
-            <div>
-                <img src={midLogo}/>
-            </div>
-            }
-
-
-            {
-            isDesktop && 
-            <div>
-                <img src={bigLogo}/>
-            </div>
-            }
-            
+                {isMobile && <img src={smallLogo}/>}
+                {isTablet && <img src={midLogo}/>}
+                {isDesktop && <img src={bigLogo}/>}
+            </div>           
         </div>
     )
 }

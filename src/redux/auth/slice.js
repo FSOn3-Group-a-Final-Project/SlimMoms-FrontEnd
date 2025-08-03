@@ -9,7 +9,7 @@ const handlePending = (state) => {
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.isRefreshing = false;
-  state.error = action.payload || action.error.message;
+  state.error = action.payload || action.error?.message;
 };
 
 export const authSlice = createSlice({
@@ -19,14 +19,22 @@ export const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isLoading: false,
+    error: null,
   },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, handlePending)
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.user = { name: action.payload.name, email: action.payload.email };
-        state.token = null;
-        state.isLoggedIn = false;
+        const { user, accessToken } = action.payload;
+
+        state.user = {
+          name: user?.name || null,
+          email: user?.email || null,
+        };
+
+        state.token = accessToken || null;
+        state.isLoggedIn = !!accessToken;
         state.isLoading = false;
       })
       .addCase(registerUser.rejected, handleRejected)
@@ -34,14 +42,10 @@ export const authSlice = createSlice({
       .addCase(loginUser.pending, handlePending)
       .addCase(loginUser.fulfilled, (state, action) => {
         const { accessToken, user } = action.payload;
-         console.log("Login olan kullanıcı bilgisi:", user); // Test için ekledim.
-        state.user = {
-          name: user.name,
-          email: user.email,
-          bloodType: user.bloodType, // kan grubu eklendi
-        };
+        state.user = { name: user.name, email: user.email };
         state.token = accessToken;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(loginUser.rejected, handleRejected)
 
@@ -50,6 +54,7 @@ export const authSlice = createSlice({
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.isLoading = false;
       })
       .addCase(logoutUser.rejected, handleRejected)
 
@@ -58,11 +63,7 @@ export const authSlice = createSlice({
       })
       // Kan grubu çekmek için değişiklik. orjinal hali en altta mevcut
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = {
-          name: action.payload.name,
-          email: action.payload.email,
-          bloodType: action.payload.bloodType, // Kan grubu
-        };
+        state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -71,9 +72,3 @@ export const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-
-// .addCase(refreshUser.fulfilled, (state, action) => {
-//       state.user = action.payload;
-//       state.isLoggedIn = true;
-//       state.isRefreshing = false;
-//     })
