@@ -9,6 +9,7 @@ import PrivateRoute from "../../routes/PrivateRoute";
 import Loader from "../loader/Loader";
 import { refreshUser } from "../../redux/auth/operations";
 import { selectToken } from "../../redux/auth/selectors";
+import { Toaster } from "react-hot-toast";
 
 // const MainPage = lazy(() => new Promise(() => {})); // loader test etmek için bug
 const MainPage = lazy(() => import("../../pages/mainPage/MainPage"));
@@ -35,6 +36,7 @@ function App() {
     <Suspense fallback={<Loader />}>
       <div className={css.appContainer}>
         <Header />
+        <Toaster />
         <Routes>
           <Route path="/" element={<MainPage />} />
           {/* <Route path="/calculator" element={<CalculatorPage />} />
