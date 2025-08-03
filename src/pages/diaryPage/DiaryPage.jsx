@@ -25,7 +25,7 @@ const DiaryPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.leftSidebar}>
+      <div className={styles.diaryContent}>
         <DiaryDateCalendar />
         <div className={styles.diaryWrapper}>
           <DiaryAddProductForm />

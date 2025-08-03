@@ -6,14 +6,15 @@
   margin : 20px;
   margin-top: 30px;
   position: relative; /* çünkü .addForm position:absolute kaldıracağız */
+  min-width: 320px;
 }
 
-.leftSidebar {
+.diaryContent {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  padding: 130px 0 0 0;
+  
 }
 
 .rightSidebar {
