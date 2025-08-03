@@ -41,13 +41,8 @@ export const authSlice = createSlice({
 
       .addCase(loginUser.pending, handlePending)
       .addCase(loginUser.fulfilled, (state, action) => {
-        const { user, accessToken } = action.payload;
-
-        state.user = {
-          name: user?.name || null,
-          email: user?.email || null,
-        };
-
+        const { accessToken, user } = action.payload;
+        state.user = { name: user.name, email: user.email };
         state.token = accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
@@ -66,10 +61,9 @@ export const authSlice = createSlice({
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
+      // Kan grubu çekmek için değişiklik. orjinal hali en altta mevcut
       .addCase(refreshUser.fulfilled, (state, action) => {
-        const user = action.payload;
-        console.log("User refreshed:",user);
-        state.user = user;
+        state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })

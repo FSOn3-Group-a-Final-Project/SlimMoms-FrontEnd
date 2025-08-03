@@ -1,61 +1,93 @@
-import { useState } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import styles from './DailyCaloriesForm.module.css';
-import { calculateDailyCalories } from '../../utils/calculations';
-import Modal from '../modal/Modal'; 
-import DailyCalorieIntake from '../dailyCalorieIntake/DailyCalorieIntake'; 
+
+// src/components/dailyCaloriesForm/DailyCaloriesForm.jsx
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import styles from "./DailyCaloriesForm.module.css";
+import { calculateDailyCalories } from "../../utils/calculations";
+import Modal from "../modal/Modal";
+import DailyCalorieIntake from "../dailyCalorieIntake/DailyCalorieIntake";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { setCalorieResult } from "../../redux/diary/slice";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const validationSchema = Yup.object({
   height: Yup.number()
-    .typeError('Height must be a number')
-    .positive('Height must be positive')
-    .required('Height is required'),
+    .typeError("Height must be a number")
+    .positive("Height must be positive")
+    .required("Height is required"),
   age: Yup.number()
-    .typeError('Age must be a number')
-    .positive('Age must be positive')
-    .integer('Age must be an integer')
-    .required('Age is required'),
+    .typeError("Age must be a number")
+    .positive("Age must be positive")
+    .integer("Age must be an integer")
+    .required("Age is required"),
   currentWeight: Yup.number()
-    .typeError('Current weight must be a number')
-    .positive('Current weight must be positive')
-    .required('Current weight is required'),
+    .typeError("Current weight must be a number")
+    .positive("Current weight must be positive")
+    .required("Current weight is required"),
   desiredWeight: Yup.number()
-    .typeError('Desired weight must be a number')
-    .positive('Desired weight must be positive')
-    .required('Desired weight is required'),
-  bloodType: Yup.string().required('Blood type is required'),
+    .typeError("Desired weight must be a number")
+    .positive("Desired weight must be positive")
+    .required("Desired weight is required"),
+  bloodType: Yup.string().required("Blood type is required"),
 });
 
 const DailyCaloriesForm = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [calorieData, setCalorieData] = useState({
     calories: 0,
-    notAllowedFoods: ['Flour products', 'Milk', 'Red meat', 'Smoked meats'], // Örnek veri
+    notAllowedFoods: [],
   });
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  }; 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const formik = useFormik({
     initialValues: {
-      height: '',
-      age: '',
-      currentWeight: '',
-      desiredWeight: '',
-      bloodType: '1',
+      height: "",
+      age: "",
+      currentWeight: "",
+      desiredWeight: "",
+      bloodType: "1",
     },
-    validationSchema: validationSchema,
-    onSubmit: (values, { resetForm }) => {
+    validationSchema,
+    onSubmit: async (values, { resetForm }) => {
       try {
+        //  Günlük kalori hesaplaması
         const calories = calculateDailyCalories(values);
-        // alert(`Your recommended daily calorie intake is ${calories.toFixed(0)} kcal`);
-        setCalorieData(prevData => ({ ...prevData, calories })); 
-        openModal(); 
+
+        //  Tüm ürünleri API'den çekiyorum
+        const response = await axios.get(`${API_URL}/products`);
+        const raw = response.data.data ?? response.data;
+        const allProducts = Array.isArray(raw) ? raw : [];
+
+        // 3️⃣ Frontend filtresi (bloodType indeksi için -1)
+        const bloodType = Number(values.bloodType);
+        const forbiddenFoods = allProducts.filter(
+          (p) =>
+            Array.isArray(p.groupBloodNotAllowed) &&
+            p.groupBloodNotAllowed[bloodType - 1]
+        );
+
+        // 4️ Modal için local state güncelleme kısmı (ilk 4 ürün)
+        setCalorieData({
+          calories,
+          notAllowedFoods: forbiddenFoods.slice(0, 4),
+        });
+
+        // Redux state'e de yazan kod (tüm liste)
+        dispatch(
+          setCalorieResult({
+            calories,
+            forbiddenProducts: forbiddenFoods,
+          })
+        );
+
+        
+        openModal();
         resetForm();
       } catch (error) {
         console.error("Error during form submission:", error);
@@ -107,7 +139,9 @@ const DailyCaloriesForm = () => {
                 value={formik.values.currentWeight}
               />
               {formik.touched.currentWeight && formik.errors.currentWeight ? (
-                <div className={styles.error}>{formik.errors.currentWeight}</div>
+                <div className={styles.error}>
+                  {formik.errors.currentWeight}
+                </div>
               ) : null}
             </div>
           </div>
@@ -123,13 +157,19 @@ const DailyCaloriesForm = () => {
                 value={formik.values.desiredWeight}
               />
               {formik.touched.desiredWeight && formik.errors.desiredWeight ? (
-                <div className={styles.error}>{formik.errors.desiredWeight}</div>
+                <div className={styles.error}>
+                  {formik.errors.desiredWeight}
+                </div>
               ) : null}
             </div>
             <div className={styles.inputGroup}>
               <label>Blood type *</label>
-              <div className={styles.radioGroup} role="group" aria-labelledby="blood-type-group">
-                {[1, 2, 3, 4].map(type => (
+              <div
+                className={styles.radioGroup}
+                role="group"
+                aria-labelledby="blood-type-group"
+              >
+                {[1, 2, 3, 4].map((type) => (
                   <label key={type} className={styles.radioLabel}>
                     <input
                       type="radio"
@@ -155,7 +195,6 @@ const DailyCaloriesForm = () => {
         </button>
       </form>
 
-      
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <DailyCalorieIntake
@@ -170,3 +209,4 @@ const DailyCaloriesForm = () => {
 };
 
 export default DailyCaloriesForm;
+

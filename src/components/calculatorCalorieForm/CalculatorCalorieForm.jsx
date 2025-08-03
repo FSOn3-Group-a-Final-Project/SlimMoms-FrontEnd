@@ -7,6 +7,13 @@ import { useDispatch } from "react-redux";
 import { setUserDailyInfo } from "../../redux/diary/slice";
 import Modal from "../modal/Modal";
 import DailyCalorieIntake from "../dailyCalorieIntake/DailyCalorieIntake";
+import { useDispatch } from "react-redux";
+import { calculateCalories } from "../../redux/diary/operations";
+import axios from "axios";
+import { setCalorieResult } from "../../redux/diary/slice";
+
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const validationSchema = Yup.object({
   height: Yup.number()
@@ -46,7 +53,9 @@ const CalculatorCalorieForm = ({ onCalculate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [calorieData, setCalorieData] = useState({
     calories: 0,
-    notAllowedFoods: [],
+
+    notAllowedFoods: [], // Örnek veri
+
   });
 
   const openModal = () => {
@@ -65,23 +74,37 @@ const CalculatorCalorieForm = ({ onCalculate }) => {
       bloodType: "1",
     },
     validationSchema: validationSchema,
-    onSubmit: (values, { resetForm }) => {
-      try {
-        const calories = calculateDailyCalories(values);
-        const notAllowedFoods = getNotAllowedFoods(values.bloodType);
-        setCalorieData({ calories, notAllowedFoods });
-        // Redux'a kaydet
-        dispatch(
-          setUserDailyInfo({
-            dailyRate: calories,
-            notRecommended: notAllowedFoods,
-          })
-        );
-        openModal();
-        if (onCalculate) {
-          onCalculate(calories, notAllowedFoods);
-        }
-        resetForm();
+
+    onSubmit: async (values, { resetForm }) => {   try {//  Günlük kalori hesaplaması
+     const calories = calculateDailyCalories(values);
+
+ 
+
+  //  Doğrudan API’den tüm ürünleri çekiyoruz
+   const response = await axios.get(`${API_URL}/products`);
+   // Eğer API yanıtı { data: [...] } formatındaysa, yoksa direkt dizi dönüyorsa:
+   const raw = response.data.data ?? response.data;
+  const allProducts = Array.isArray(raw) ? raw : [];
+   //  Burada kendi frontend filtremizi uyguluyoruz
+   const bloodType = Number(values.bloodType);
+   const forbiddenFoods = allProducts.filter(product => {
+      // product.groupBloodNotAllowed bir [Boolean] dizisi,
+ 
+      return Array.isArray(product.groupBloodNotAllowed) &&
+             product.groupBloodNotAllowed[bloodType-1];
+    });
+
+     //  Modal verisini güncelle
+     setCalorieData({
+       calories,
+      notAllowedFoods: forbiddenFoods.slice(0,4),
+     
+     });
+ // Redux state’e de yaz:
+  dispatch(setCalorieResult({ calories, forbiddenProducts: forbiddenFoods }));
+     openModal();
+     resetForm();
+
       } catch (error) {
         console.error("Error during form submission:", error);
       }
