@@ -5,7 +5,7 @@ import { logoutUser } from "../../redux/auth/operations";
 import useMedia from "../../hooks/useMedia";
 
 const UserInfo = () => {
-  const { isMobile, isTablet, isDesktop } = useMedia();
+  const { isTablet, isDesktop } = useMedia();
 
   const user = useSelector(selectUser);
   console.log("UserInfo component rendered with user:", user);
