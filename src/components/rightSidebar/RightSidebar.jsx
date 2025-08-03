@@ -6,11 +6,15 @@ import {
 } from "../../redux/diary/selectors";
 import { selectBloodType } from "../../redux/auth/selectors"; // kan grubu selectorü
 
+
+const selectForbiddenProducts = (state) => state.diary.calorieResult.forbiddenProducts;
+
 function RightSidebar() {
   //  Redux'tan seçilen tarih
   const selectedDate = useSelector(selectSelectedDate); //tarih
   const products = useSelector(selectDiaryProductsByDate); // o tarihtetki ürünler
-
+  const forbiddenProducts = useSelector(  state => state.diary.calorieResult.forbiddenProducts
+); //selectForbiddenProducts
   //Test için
   console.log("PRODUCTS:", products);
 
@@ -30,15 +34,11 @@ function RightSidebar() {
   //  Normal oranın yüzdesi
   const percentOfNormal = Math.round((consumed / dailyRate) * 100);
 
-  //  Şimdilik sabit önerilmeyen ürün listesi
-  // const notRecommended = ["Sugar", "Milk", "Red meat", "Flour"];
+
   //  Önerilmeyen ürünleri kan grubuna göre filtrele
-  const notRecommended = products
-    ?.filter((item) => {
-      if (!bloodType) return false;
-      return item.product.groupBloodNotAllowed?.[bloodType];
-    })
-    .map((item) => item.product.title);
+const notRecommended = Array.isArray(forbiddenProducts)
+  ? forbiddenProducts.slice(0, 4)
+  : [];
 
   return (
     <>
@@ -68,7 +68,7 @@ function RightSidebar() {
             {notRecommended.length > 0 ? (
               notRecommended.map((item, index) => (
                 <li key={index} className={styles.ProductItem}>
-                  {item}
+                {typeof item === "string" ? item : item.title}
                 </li>
               ))
             ) : (
