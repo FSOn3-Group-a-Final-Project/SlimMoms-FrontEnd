@@ -4,24 +4,23 @@ import {
   selectSelectedDate,
   selectDiaryProductsByDate,
 } from "../../redux/diary/selectors";
-import { selectBloodType } from "../../redux/auth/selectors"; // kan grubu selectorü
-
-const selectForbiddenProducts = (state) =>
-  state.diary.calorieResult.forbiddenProducts;
+import { selectDailyCalories, selectForbiddenProducts } from "../../redux/calculator/selectors";
+// import { selectBloodType } from "../../redux/auth/selectors"; // kan grubu selectorü
 
 function RightSidebar() {
   const selectedDate = useSelector(selectSelectedDate); // tarih
   const products = useSelector(selectDiaryProductsByDate); // o tarihteki ürünler
+  const dailyCalories = useSelector(selectDailyCalories); // günlük kalori
   const forbiddenProducts = useSelector(selectForbiddenProducts); // önerilmeyen ürünler
 
-  const bloodType = useSelector(selectBloodType); // kan grubu
+  // const bloodType = useSelector(selectBloodType); // kan grubu
 
   const consumed = products?.reduce(
     (total, p) => total + (p.product.calories || 0),
     0
   );
 
-  const dailyRate = 2200;
+  const dailyRate = dailyCalories || 2200; // Eğer Redux'tan kalori gelmezse varsayılan değer
   const left = dailyRate - consumed;
   const percentOfNormal = Math.round((consumed / dailyRate) * 100);
 
@@ -57,7 +56,7 @@ function RightSidebar() {
           {notRecommended.length > 0 ? (
             notRecommended.map((item, index) => (
               <li key={index} className={styles.ProductItem}>
-                {typeof item === "string" ? item : item.title}
+                {item}
               </li>
             ))
           ) : (
