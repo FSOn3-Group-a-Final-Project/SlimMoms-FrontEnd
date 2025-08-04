@@ -65,8 +65,9 @@
     height: 326px;
     background-image: url("/public/images/rightsidebarbackgroundtablet.png");
     background-repeat: no-repeat;
-    background-size: cover;
     padding: 50px 20px;
+    background-position: right;
+        background-size: contain;
   }
 
   .SidebarContent {
