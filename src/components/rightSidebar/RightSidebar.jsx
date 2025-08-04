@@ -2,23 +2,20 @@ import { useSelector } from "react-redux"; // Redux verisi çekmek için
 import styles from "./RightSidebar.module.css";
 import {
   selectSelectedDate,
-  selectDiaryProductsByDate,
+  selectDiarySummary,
 } from "../../redux/diary/selectors";
 import { selectDailyCalories, selectForbiddenProducts } from "../../redux/calculator/selectors";
 // import { selectBloodType } from "../../redux/auth/selectors"; // kan grubu selectorü
 
 function RightSidebar() {
   const selectedDate = useSelector(selectSelectedDate); // tarih
-  const products = useSelector(selectDiaryProductsByDate); // o tarihteki ürünler
+  // const products = useSelector(selectDiaryProductsByDate); // o tarihteki ürünler
   const dailyCalories = useSelector(selectDailyCalories); // günlük kalori
   const forbiddenProducts = useSelector(selectForbiddenProducts); // önerilmeyen ürünler
+  const { consumed } = useSelector(selectDiarySummary);
 
   // const bloodType = useSelector(selectBloodType); // kan grubu
 
-  const consumed = products?.reduce(
-    (total, p) => total + (p.product.calories || 0),
-    0
-  );
 
   const dailyRate = dailyCalories || 0; // Eğer Redux'tan kalori gelmezse varsayılan değer
   const left = dailyRate - consumed;

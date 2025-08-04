@@ -39,6 +39,7 @@ export const selectDiarySummary = createSelector(
     const consumed = productList.reduce((sum, item) => {
       return sum + Math.round((item.product.calories / 100) * item.weight);
     }, 0);
+    
 
     const left = dailyRate - consumed;
     const percentOfNormal = dailyRate
