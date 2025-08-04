@@ -24,26 +24,22 @@
   line-height: 14px; 
   letter-spacing: 0.56px;
 
-  z-index: 110;
 }
 .UserInfoContainerTablet {
   background-color:unset;
   top:23px;
   right:48px;
-  z-index: 110;
 }
 .UserInfoContainerDesktop {
   background-color:unset;
   top:130px;
   left:unset;
   right:16px;
-  z-index: 110;
 }
 
 .LogoutButton {
   position: absolute;
   right:20px;
-  z-index: 111;
 }
 
 .userName {

@@ -87,24 +87,9 @@
   .rightSidebar {
     grid-column: 2 / 3;
     grid-row: 1 / 4;
-    /* Make sidebar fixed to cover full height including header */
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 400px; /* adjust as needed for your sidebar width */
-    height: 100vh;
-    margin: 0;
-    z-index: 1;
-    background: #fff;
-    box-shadow: -2px 0 8px rgba(0,0,0,0.04);
-    /* Align content with diary sections */
-    padding-top: 0; /* align with diary date section (takvim) */
-    padding-left: 40px; /* same as .container padding */
-    padding-right: 40px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    height: 100%;
+    margin: 0; /* margin kaldır */
+   
   }
 
    .diaryWrapper {
