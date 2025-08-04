@@ -8,7 +8,8 @@ import css from "./App.module.css";
 import PrivateRoute from "../../routes/PrivateRoute";
 import Loader from "../loader/Loader";
 import { refreshUser } from "../../redux/auth/operations";
-import { selectToken } from "../../redux/auth/selectors";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
+// import { selectToken } from "../../redux/auth/selectors";
 import { Toaster } from "react-hot-toast";
 
 // const MainPage = lazy(() => new Promise(() => {})); // loader test etmek için bug
@@ -24,13 +25,14 @@ const RegisterPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
+    const isRefreshing = useSelector(selectIsRefreshing);
+  // const token = useSelector(selectToken);
 
   useEffect(() => {
-    if (token) {
-      dispatch(refreshUser());
-    }
-  }, [dispatch, token]);
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  if (isRefreshing) return <Loader />;
 
   return (
     <Suspense fallback={<Loader />}>

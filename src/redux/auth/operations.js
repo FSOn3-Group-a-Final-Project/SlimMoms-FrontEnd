@@ -85,8 +85,8 @@ export const logoutUser = createAsyncThunk(
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
+    // const state = thunkAPI.getState();
+    const token = localStorage.getItem("token"); // ✅ burada doğrudan localStorage'tan al
     if (!token) {
       return thunkAPI.rejectWithValue("Token not found.");
     }
