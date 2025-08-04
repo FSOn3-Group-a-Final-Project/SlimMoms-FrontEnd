@@ -6,8 +6,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Modal from "../modal/Modal";
 import DailyCalorieIntake from "../dailyCalorieIntake/DailyCalorieIntake";
-import axios from "axios";
-import { setCalorieResult } from "../../redux/diary/slice";
+import { calculateCaloriesAndForbiddenFoods, updateUserData } from "../../redux/calculator/operations";
+
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -34,25 +34,24 @@ const validationSchema = Yup.object({
 });
 
 // Kan grubuna göre önerilmeyen ürünler
-const notAllowedFoodsByBloodType = {
-  1: ["Wheat", "Corn", "Lentils", "Peanuts", "Red meat"],
-  2: ["Red meat", "Dairy", "Kidney beans", "Wheat", "Corn"],
-  3: ["Chicken", "Corn", "Wheat", "Tomatoes", "Peanuts"],
-  4: ["Red meat", "Kidney beans", "Corn", "Buckwheat", "Sesame seeds"],
-};
+// Bu kısım artık Redux operations içinde halledildiği için kaldırılabilir.
+// const notAllowedFoodsByBloodType = {
+//   1: ["Wheat", "Corn", "Lentils", "Peanuts", "Red meat"],
+//   2: ["Red meat", "Dairy", "Kidney beans", "Wheat", "Corn"],
+//   3: ["Chicken", "Corn", "Wheat", "Tomatoes", "Peanuts"],
+//   4: ["Red meat", "Kidney beans", "Corn", "Buckwheat", "Sesame seeds"],
+// };
 
-function getNotAllowedFoods(bloodType) {
-  return notAllowedFoodsByBloodType[bloodType] || [];
-}
+// function getNotAllowedFoods(bloodType) {
+//   return notAllowedFoodsByBloodType[bloodType] || [];
+// }
 
-const CalculatorCalorieForm = ({ onCalculate }) => {
+const CalculatorCalorieForm = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [calorieData, setCalorieData] = useState({
     calories: 0,
-
     notAllowedFoods: [], // Örnek veri
-
   });
 
   const openModal = () => {
@@ -68,40 +67,33 @@ const CalculatorCalorieForm = ({ onCalculate }) => {
       age: "",
       currentWeight: "",
       desiredWeight: "",
-      bloodType: "1",
+      bloodType: "A", 
     },
     validationSchema: validationSchema,
 
-    onSubmit: async (values, { resetForm }) => {   try {//  Günlük kalori hesaplaması
-     const calories = calculateDailyCalories(values);
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        const calories = calculateDailyCalories(values);
 
- 
+        
+        const resultAction = await dispatch(calculateCaloriesAndForbiddenFoods({
+          ...values,
+          calories, 
+        }));
+       
 
-  //  Doğrudan API’den tüm ürünleri çekiyoruz
-   const response = await axios.get(`${API_URL}/products`);
-   // Eğer API yanıtı { data: [...] } formatındaysa, yoksa direkt dizi dönüyorsa:
-   const raw = response.data.data ?? response.data;
-  const allProducts = Array.isArray(raw) ? raw : [];
-   //  Burada kendi frontend filtremizi uyguluyoruz
-   const bloodType = Number(values.bloodType);
-   const forbiddenFoods = allProducts.filter(product => {
-      // product.groupBloodNotAllowed bir [Boolean] dizisi,
- 
-      return Array.isArray(product.groupBloodNotAllowed) &&
-             product.groupBloodNotAllowed[bloodType-1];
-    });
-
-     //  Modal verisini güncelle
-     setCalorieData({
-       calories,
-      notAllowedFoods: forbiddenFoods.slice(0,4),
+        if (calculateCaloriesAndForbiddenFoods.fulfilled.match(resultAction)) {
+          const { calories, forbiddenProducts } = resultAction.payload;
      
-     });
- // Redux state’e de yaz:
-  dispatch(setCalorieResult({ calories, forbiddenProducts: forbiddenFoods }));
-     openModal();
-     resetForm();
-
+          setCalorieData({
+            calories: calories,
+            notAllowedFoods: forbiddenProducts.slice(0, 4), 
+          });
+          openModal();
+          resetForm();
+        } else {
+          console.error("Error calculating calories or fetching forbidden foods:", resultAction.payload);
+        }
       } catch (error) {
         console.error("Error during form submission:", error);
       }
@@ -187,8 +179,8 @@ const CalculatorCalorieForm = ({ onCalculate }) => {
                     <input
                       type="radio"
                       name="bloodType"
-                      value={String(type)}
-                      checked={formik.values.bloodType === String(type)}
+                      value={type} 
+                      checked={formik.values.bloodType === type}
                       onChange={formik.handleChange}
                       className={styles.radioInput}
                     />
@@ -213,6 +205,15 @@ const CalculatorCalorieForm = ({ onCalculate }) => {
             calories={calorieData.calories}
             products={calorieData.notAllowedFoods}
             onClose={closeModal}
+            
+            onStartLosingWeight={() => {
+              
+              dispatch(updateUserData({
+                dailyCalories: calorieData.calories,
+                notAllowedFoods: calorieData.notAllowedFoods,
+              }));
+              closeModal();
+            }}
           />
         </Modal>
       )}
