@@ -12,6 +12,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import diaryReducer from "../redux/diary/slice.js";
 import authReducer from "../redux/auth/slice.js";
+import { calculatorReducer } from "./calculator/slice.js";
 
 const authPersistConfig = {
   key: "auth",
@@ -23,6 +24,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     diary: diaryReducer,
+    calculator: calculatorReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
