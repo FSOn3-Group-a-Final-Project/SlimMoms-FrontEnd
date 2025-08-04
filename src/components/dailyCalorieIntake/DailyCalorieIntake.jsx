@@ -1,8 +1,7 @@
 import styles from "./DailyCalorieIntake.module.css";
 
 function DailyCalorieIntake({ calories, products }) {
-  console.log("Modal'a gelen ürünler:", products); 
-  console.log(" RENDER – ürünler props:", products);
+  
   console.assert(Array.isArray(products), " products bir dizi değil!");
   return (
     <div className={styles.Container}>

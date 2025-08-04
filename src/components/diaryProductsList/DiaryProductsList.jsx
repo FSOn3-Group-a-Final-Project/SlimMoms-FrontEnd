@@ -23,7 +23,6 @@ const DiaryProductsList = () => {
     return <p className={styles.empty}>Loading...</p>;
   }
 
-  console.log("DiaryProductsList products:", products);
   if (!Array.isArray(products) || products.length === 0) {
     return <p className={styles.empty}>Product not added yet</p>;
   }

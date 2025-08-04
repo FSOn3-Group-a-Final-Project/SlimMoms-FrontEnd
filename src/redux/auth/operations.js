@@ -47,7 +47,6 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axios.post("/auth/login", { email, password });
       const token = response.data.data?.accessToken;
-      console.log("Token:", token);
 
       if (!token) {
         toast.error("No token received from API!");
@@ -94,10 +93,9 @@ export const refreshUser = createAsyncThunk(
     setAuthHeader(token);
     try {
       const response = await axios.get("/users/current");
-      // Eğer response.data.data doğrudan user ise:
+      
       return response.data.data.user || response.data.data; 
-      // Eğer response.data.data.user ise:
-      // return response.data.data.user;
+    
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }

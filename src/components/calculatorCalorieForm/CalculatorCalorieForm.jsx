@@ -182,7 +182,7 @@ const CalculatorCalorieForm = ({ onCalculate }) => {
                 role="group"
                 aria-labelledby="blood-type-group"
               >
-                {[1, 2, 3, 4].map((type) => (
+                {["A", "B", "AB", "0"].map((type) => (
                   <label key={type} className={styles.radioLabel}>
                     <input
                       type="radio"

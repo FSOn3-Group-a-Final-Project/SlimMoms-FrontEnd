@@ -8,7 +8,6 @@ const UserInfo = () => {
   const { isTablet, isDesktop } = useMedia();
 
   const user = useSelector(selectUser);
-  console.log("UserInfo component rendered with user:", user);
   const isRefreshing = useSelector(selectIsRefreshing);
 
   const dispatch = useDispatch();

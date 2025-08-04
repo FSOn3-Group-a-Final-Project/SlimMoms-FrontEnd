@@ -13,14 +13,12 @@ export const addProductToDiary = createAsyncThunk(
   ) => {
     try {
       const token = getState().auth.token;
-      console.log("Token:", token);
       const response = await axios.post(
         `${API_URL}/products`,
         { productId, weight, date },
         getAuthConfig(token)
       );
       dispatch(refreshUser());
-      console.log(response.data)
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || "Sunucu hatası");
