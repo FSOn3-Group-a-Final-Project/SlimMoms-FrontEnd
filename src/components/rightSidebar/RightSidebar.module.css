@@ -17,9 +17,9 @@
   gap: 42px;
 }
 
-.SidebarSummary,
+.Summary,
 .NotRecommended {
-  width: 288px;
+  width: 100%;
 }
 
 .Date,
@@ -30,7 +30,7 @@
   line-height: 100%;
   letter-spacing: 4%;
   color: #212121;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .List,
@@ -56,7 +56,7 @@
 .ProductList li {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 /* Tablet görünüm (min 768px) */
@@ -71,11 +71,12 @@
 
   .SidebarContent {
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    gap: 80px;
   }
 
-  .SidebarSummary,
+  .Summary,
   .NotRecommended {
     width: 288px;
     height: 166px;
@@ -107,7 +108,7 @@
     height: 100%;
   }
 
-  .SidebarSummary,
+  .Summary,
   .NotRecommended {
     width: 288px;
     height: 166px;
