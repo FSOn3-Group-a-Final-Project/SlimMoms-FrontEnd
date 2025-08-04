@@ -30,25 +30,27 @@ function RightSidebar() {
   
     return (
     <aside className={styles.Sidebar}>
-      <p className={styles.Date}>Summary for {selectedDate}</p>
-      <ul className={styles.List}>
-        <li>
-          <span className={styles.Label}>Left</span>
-          <span className={styles.Value}>{left} kcal</span>
-        </li>
-        <li>
-          <span className={styles.Label}>Consumed</span>
-          <span className={styles.Value}>{consumed} kcal</span>
-        </li>
-        <li>
-          <span className={styles.Label}>Daily rate</span>
-          <span className={styles.Value}>{dailyRate} kcal</span>
-        </li>
-        <li>
-          <span className={styles.Label}>% of normal</span>
-          <span className={styles.Value}>{percentOfNormal} %</span>
-        </li>
-      </ul>
+      <div className={styles.SidebarSummary}>
+        <p className={styles.Date}>Summary for {selectedDate}</p>
+        <ul className={styles.List}>
+          <li>
+            <span className={styles.Label}>Left</span>
+            <span className={styles.Value}>{left} kcal</span>
+          </li>
+          <li>
+            <span className={styles.Label}>Consumed</span>
+            <span className={styles.Value}>{consumed} kcal</span>
+          </li>
+          <li>
+            <span className={styles.Label}>Daily rate</span>
+            <span className={styles.Value}>{dailyRate} kcal</span>
+          </li>
+          <li>
+            <span className={styles.Label}>% of normal</span>
+            <span className={styles.Value}>{percentOfNormal} %</span>
+          </li>
+        </ul>
+      </div>
 
       <div className={styles.NotRecommended}>
         <p className={styles.NotRecommendedLabel}>Food not recommended</p>

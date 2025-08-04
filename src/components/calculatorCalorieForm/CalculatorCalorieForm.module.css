@@ -6,7 +6,6 @@
   width: 400px;
   margin: 0 auto;
   font-family: "Verdana", sans-serif;
-  
 }
 
 .formColumns {
@@ -58,7 +57,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: #9b9faa; 
+  color: #9b9faa;
   transition: color 0.3s ease;
 }
 
@@ -101,7 +100,7 @@
 }
 
 .radioInput:checked ~ .labelText {
-  color: #fc842d; 
+  color: #fc842d;
 }
 
 .error {
@@ -117,7 +116,7 @@
   border-radius: 30px;
   cursor: pointer;
   width: 210px;
-  align-self: center; 
+  align-self: center;
   transition: background-color 0.3s ease;
   box-shadow: 0 4px 10px rgba(252, 132, 45, 0.5);
 }
@@ -129,10 +128,10 @@
 /* Tablet ve üzeri */
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .form {
-    max-width: 600px; 
-    position: absolute;
-    margin-left: 20px;
+    max-width: 600px;
+    margin: 0 auto;
     font-family: "Verdana", sans-serif;
+    width: 100%;
   }
 
   .formColumns {
@@ -145,7 +144,7 @@
   }
 
   .button {
-    align-self: flex-start; 
+    align-self: flex-start;
     margin-top: 20px;
   }
   .inputGroup label {
@@ -158,9 +157,9 @@
 /* Desktop ve üzeri */
 @media screen and (min-width: 1280px) {
   .form {
-    margin-left: 20px; 
+    margin-left: 20px;
   }
   .button {
-    margin-left: 300px; 
+    margin-left: 300px;
   }
 }
