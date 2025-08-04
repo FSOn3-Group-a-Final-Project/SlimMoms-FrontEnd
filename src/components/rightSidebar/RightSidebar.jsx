@@ -20,7 +20,7 @@ function RightSidebar() {
     0
   );
 
-  const dailyRate = dailyCalories || 2200; // Eğer Redux'tan kalori gelmezse varsayılan değer
+  const dailyRate = dailyCalories || 0; // Eğer Redux'tan kalori gelmezse varsayılan değer
   const left = dailyRate - consumed;
   const percentOfNormal = Math.round((consumed / dailyRate) * 100);
 
