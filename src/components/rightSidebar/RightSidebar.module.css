@@ -19,11 +19,13 @@
   gap: 42px;
 }
 
-.SidebarSummary,
+.Summary,
 .NotRecommended {
+
   width: 288px;
   align-self: flex-start;
   padding-left: 20px;
+
 }
 
 .Date,
@@ -34,8 +36,10 @@
   line-height: 100%;
   letter-spacing: 4%;
   color: #212121;
+
   margin-bottom: 10px;
   text-align: left;
+
 }
 
 .List,
@@ -61,7 +65,7 @@
 .ProductList li {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 /* Tablet görünüm (min 768px) */
@@ -70,8 +74,8 @@
     height: 326px;
     background-image: url("/public/images/rightsidebarbackgroundtablet.png");
     background-repeat: no-repeat;
-    background-size: cover;
     padding: 50px 20px;
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -86,10 +90,12 @@
   .SidebarContent {
     flex-direction: column;
     justify-content: center;
+
     align-items: center;
+    gap: 200px;
   }
 
-  .SidebarSummary,
+  .Summary,
   .NotRecommended {
     width: 288px;
     height: 166px;
@@ -118,16 +124,21 @@
   }
 
   .SidebarContent {
+
     /* flex-direction: column; */
     /* align-items: center; */
     justify-content: center;
     /* gap: 42px; */
+
     height: 100%;
   }
 
-  .SidebarSummary,
+  .Summary {
+    margin-bottom: 0;
+  }
+
   .NotRecommended {
-    width: 288px;
-    height: 166px;
+    margin-top: 0;
+    
   }
 }
