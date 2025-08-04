@@ -74,7 +74,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 80px;
+    gap: 200px;
   }
 
   .Summary,
