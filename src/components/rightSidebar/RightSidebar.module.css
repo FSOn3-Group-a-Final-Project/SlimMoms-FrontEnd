@@ -8,18 +8,24 @@
   background-color: #f0f1f3;
   padding: 50px 20px;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
 }
 
 .SidebarContent {
-  display: flex;
-  align-items: center;
+  /* display: flex; */
+  /* align-items: center; */
   flex-direction: column;
   gap: 42px;
 }
 
 .Summary,
 .NotRecommended {
-  width: 100%;
+
+  width: 288px;
+  align-self: flex-start;
+  padding-left: 20px;
+
 }
 
 .Date,
@@ -30,7 +36,10 @@
   line-height: 100%;
   letter-spacing: 4%;
   color: #212121;
-  margin-bottom: 20px;
+
+  margin-bottom: 10px;
+  text-align: left;
+
 }
 
 .List,
@@ -66,13 +75,22 @@
     background-image: url("/public/images/rightsidebarbackgroundtablet.png");
     background-repeat: no-repeat;
     padding: 50px 20px;
-    background-position: right;
-        background-size: contain;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  .Date,
+  .NotRecommendedLabel {
+    text-align: left;
   }
 
   .SidebarContent {
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: center;
+
     align-items: center;
     gap: 200px;
   }
@@ -81,8 +99,8 @@
   .NotRecommended {
     width: 288px;
     height: 166px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    /* margin-top: 50px; */
+    /* margin-bottom: 50px; */
   }
 }
 
@@ -99,13 +117,19 @@
     background-repeat: no-repeat;
     background-size: cover;
     padding: 100px 20px;
-  }
-
-  .SidebarContent {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 30px;
+  }
+
+  .SidebarContent {
+
+    /* flex-direction: column; */
+    /* align-items: center; */
+    justify-content: center;
+    /* gap: 42px; */
+
     height: 100%;
   }
 
