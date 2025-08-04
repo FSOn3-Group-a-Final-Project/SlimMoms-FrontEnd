@@ -11,17 +11,21 @@ const handleRejected = (state, action) => {
   state.isRefreshing = false;
   state.error = action.payload || action.error?.message;
 };
+const savedToken = localStorage.getItem("token");
+const savedUser = JSON.parse(localStorage.getItem("user"));
+
+const initialState = {
+  user: savedUser || { name: null, email: null },
+  token: savedToken || null,
+  isLoggedIn: !!savedToken,
+  isRefreshing: false,
+  isLoading: false,
+  error: null,
+};
 
 export const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    user: { name: null, email: null },
-    token: null,
-    isLoggedIn: false,
-    isRefreshing: false,
-    isLoading: false,
-    error: null,
-  },
+  initialState,
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, handlePending)
@@ -46,6 +50,8 @@ export const authSlice = createSlice({
         state.token = accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
+        localStorage.setItem("token", accessToken);
+        localStorage.setItem("user", JSON.stringify(user));
       })
       .addCase(loginUser.rejected, handleRejected)
 
@@ -55,6 +61,8 @@ export const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
         state.isLoading = false;
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
       })
       .addCase(logoutUser.rejected, handleRejected)
 
@@ -66,6 +74,8 @@ export const authSlice = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        localStorage.setItem("user", JSON.stringify(action.payload));
+
       })
       .addCase(refreshUser.rejected, handleRejected);
   },
