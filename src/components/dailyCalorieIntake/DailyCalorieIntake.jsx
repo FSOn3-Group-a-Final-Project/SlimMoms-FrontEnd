@@ -1,7 +1,8 @@
 import styles from "./DailyCalorieIntake.module.css";
+import { useNavigate } from "react-router-dom";
 
 function DailyCalorieIntake({ calories, products }) {
-  
+  const navigate = useNavigate(); 
   console.assert(Array.isArray(products), " products bir dizi değil!");
   return (
     <div className={styles.Container}>
@@ -16,7 +17,7 @@ function DailyCalorieIntake({ calories, products }) {
         ))}
       </ul>
 
-      <button className={styles.ActionButton}>Start losing weight</button>
+      <button className={styles.ActionButton} onClick={() => navigate("/diary")}>Start losing weight </button>
     </div>
   );
 }
