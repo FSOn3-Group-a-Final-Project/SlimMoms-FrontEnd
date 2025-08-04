@@ -49,3 +49,11 @@
   background: linear-gradient(to top, white 60%, transparent);
   pointer-events: none;
 }
+
+.empty {
+   font-style: italic;
+    font-weight: bold;
+    color: orange;
+    font-size: 14px;
+}
+
