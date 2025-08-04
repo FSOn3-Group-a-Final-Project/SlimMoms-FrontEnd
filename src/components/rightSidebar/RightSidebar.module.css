@@ -103,14 +103,17 @@
   .SidebarContent {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    /* gap: 42px; */
+    justify-content: flex-start;
+    gap: 30px;
     height: 100%;
   }
 
-  .Summary,
+  .Summary {
+    margin-bottom: 0;
+  }
+
   .NotRecommended {
-    width: 288px;
-    height: 166px;
+    margin-top: 0;
+    
   }
 }
