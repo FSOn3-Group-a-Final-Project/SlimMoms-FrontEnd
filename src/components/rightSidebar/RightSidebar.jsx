@@ -28,8 +28,8 @@ function RightSidebar() {
   const notRecommended = Array.isArray(forbiddenProducts)
     ? forbiddenProducts.slice(0, 4)
     : [];
-
-  return (
+  
+    return (
     <aside className={styles.Sidebar}>
       <p className={styles.Date}>Summary for {selectedDate}</p>
       <ul className={styles.List}>
