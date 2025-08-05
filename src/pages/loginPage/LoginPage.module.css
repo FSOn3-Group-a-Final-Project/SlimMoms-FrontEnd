@@ -5,7 +5,7 @@
     background: url(/images/authtabletbackground.png);
   }
 }
-@media screen and (min-width: 1280px) and (max-width: 1920px) {
+@media screen and (min-width: 1280px) {
   .loginPage {
     background-image: url("/public/images/backgroundimage3px.png");
     background-repeat: no-repeat;
