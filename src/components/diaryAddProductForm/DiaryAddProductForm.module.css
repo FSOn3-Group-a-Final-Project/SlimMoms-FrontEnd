@@ -1,5 +1,6 @@
 .suggestionsListScrollable {
-  max-height: 160px; /* Yaklaşık 4 ürün görünür */
+  max-height: 160px;
+  /* Yaklaşık 4 ürün görünür */
   overflow-y: auto;
   overflow-x: hidden;
   border: 1px solid #ccc;
@@ -103,7 +104,7 @@
 
 .buttonAdd {
   background-color: #fc842d;
-   box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.502);
+  box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.502);
   color: white;
   max-width: 176;
   height: 44;
@@ -125,7 +126,7 @@
 }
 
 .input {
-  padding: 8px 12px ;
+  padding: 8px 12px;
   font-size: 14px;
   border: none;
   border-bottom: 1px solid #e0e0e0;
@@ -133,7 +134,7 @@
   color: #9b9faa;
   outline: none;
   width: webkit-fill-available;
-  text-align: left; 
+  text-align: left;
   font-family: Verdana;
   font-weight: 700;
   line-height: 100%;
@@ -143,10 +144,13 @@
 .inputGram {
   padding: 8px 12px;
   font-size: 16px;
-  border: none; /* Kenarlardan tümünü kaldır */
-  border-bottom: 1px solid #e0e0e0; /* Sadece alt çizgi */
+  border: none;
+  /* Kenarlardan tümünü kaldır */
+  border-bottom: 1px solid #e0e0e0;
+  /* Sadece alt çizgi */
   color: #9b9faa;
-  border-radius: 0; /* Kavisleri sıfırla */
+  border-radius: 0;
+  /* Kavisleri sıfırla */
   outline: none;
   width: webkit-fill-available;
   font-family: Verdana;
@@ -173,10 +177,14 @@
     padding-right: 0;
   }
 
-.desktopForm {
-flex-wrap: nowrap;
+  .desktopForm {
+    flex-wrap: nowrap;
     gap: 36px;
   }
 
+  .suggestionsListScrollable {
+    position: fixed;
+    margin-top: 200px;
+  }
 
 }
