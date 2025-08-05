@@ -19,10 +19,10 @@ const LoginForm = () => {
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().email("Invalid email address").required("Required"),
+    email: Yup.string().email("Invalid email address").required("*Required"),
     password: Yup.string()
       .min(6, "Must be at least 6 characters")
-      .required("Required"),
+      .required("*Required"),
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
