@@ -9,41 +9,68 @@ const Navigation = () => {
     const { isMobile, isTablet, isDesktop } = useMedia();
 
     return (
-        <div className={css.NavigationContainer}>
-            {isLogged ? 
-            <div> 
-                <ul className={`${css.NavigationUL} ${isDesktop ? css.NavigationUlDesktop : ''} ${(isMobile || isTablet) ? css.deactiveNav : ''}`}>
-                    <li>
-                        <NavLink to="/diary" className={css.navLink}>
-                            <p>DIARY</p>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/calculator" className={css.navLink}>
-                            <p>CALCULATOR</p>
-                        </NavLink>
-                    </li>
-                </ul>
-            </div>
-            :
-            <div> 
-                <ul className={`${css.NavigationUL} ${isDesktop ? css.NavigationUlDesktop : ''}`}>
-                    <li>
-                        <NavLink to="/login" className={css.navLink}>
-                            <p>LOGIN</p>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/register" className={css.navLink}>
-                            <p>REGISTIRATION</p>
-                        </NavLink>
-                    </li>
-                </ul>
-            </div>
-            }
-
-        </div>
-    )
+      <div className={css.NavigationContainer}>
+        {isLogged ? (
+          <div>
+            <ul
+              className={`${css.NavigationUL} ${
+                isDesktop ? css.NavigationUlDesktop : ""
+              } ${isMobile || isTablet ? css.deactiveNav : ""}`}
+            >
+              <li>
+                <NavLink
+                  to="/diary"
+                  className={({ isActive }) =>
+                    isActive ? `${css.navLink} ${css.active}` : css.navLink
+                  }
+                >
+                  <p>DIARY</p>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/calculator"
+                  className={({ isActive }) =>
+                    isActive ? `${css.navLink} ${css.active}` : css.navLink
+                  }
+                >
+                  <p>CALCULATOR</p>
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div>
+            <ul
+              className={`${css.NavigationUL} ${
+                isDesktop ? css.NavigationUlDesktop : ""
+              }`}
+            >
+              <li>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive ? `${css.navLink} ${css.active}` : css.navLink
+                  }
+                >
+                  <p>LOGIN</p>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/register"
+                  className={({ isActive }) =>
+                    isActive ? `${css.navLink} ${css.active}` : css.navLink
+                  }
+                >
+                  <p>REGISTIRATION</p>
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
+    );
 }
 
 export default Navigation;
