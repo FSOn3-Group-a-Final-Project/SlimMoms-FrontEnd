@@ -38,7 +38,7 @@
 }
 
 /* Desktop ve üzeri */
-@media screen and (min-width: 1280px) and (max-width: 1920px) {
+@media screen and (min-width: 1280px) {
   .container {
     padding: 100px 16px;
     background-image: url("/public/images/backgroundimage3px.png");
